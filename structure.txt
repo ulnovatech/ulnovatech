@@ -1,0 +1,671 @@
+Folder PATH listing
+Volume serial number is BA4C-A794
+C:.
+|   about.html
+|   brothr.html
+|   colorcodes.html
+|   colorcodes2.html
+|   index.html
+|   portfolio-details.html
+|   prices.html
+|   pricing2.html
+|   Readme.txt
+|   service-details.html
+|   starter-page.html
+|   structure.txt
+|   withmap.html
+|   
++---assets
+|   +---css
+|   |       main.css
+|   |       
+|   +---img
+|   |   |   about-2.jpg
+|   |   |   about.jpg
+|   |   |   favicon.ico
+|   |   |   full-stack.webp
+|   |   |   hero-bg.jpg
+|   |   |   iconise.png
+|   |   |   logo2.png
+|   |   |   page-title-bg.webp
+|   |   |   services-1.jpg
+|   |   |   services-2.jpg
+|   |   |   services-3.jpg
+|   |   |   services.jpg
+|   |   |   testimonials-bg.jpg
+|   |   |   uln-logo.png
+|   |   |   ulnova.jpg
+|   |   |   ulnova2.jpg
+|   |   |   ulnova3.jpg
+|   |   |   working-1.jpg
+|   |   |   working-2.jpg
+|   |   |   working-3.jpg
+|   |   |   working-4.jpg
+|   |   |   
+|   |   +---clients
+|   |   |       client-1.png
+|   |   |       client-2.png
+|   |   |       client-3.png
+|   |   |       client-4.png
+|   |   |       client-5.png
+|   |   |       client-6.png
+|   |   |       
+|   |   +---portfolio
+|   |   |       app-1.jpg
+|   |   |       app-2.jpg
+|   |   |       app-3.jpg
+|   |   |       books-1.jpg
+|   |   |       books-2.jpg
+|   |   |       books-3.jpg
+|   |   |       branding-1.jpg
+|   |   |       branding-2.jpg
+|   |   |       branding-3.jpg
+|   |   |       product-1.jpg
+|   |   |       product-2.jpg
+|   |   |       product-3.jpg
+|   |   |       
+|   |   +---team
+|   |   |       team-1.jpg
+|   |   |       team-2.jpg
+|   |   |       team-3.jpg
+|   |   |       
+|   |   \---testimonials
+|   |           avatar - female.png
+|   |           avatar - male.jpeg
+|   |           download (1).jpeg
+|   |           download.jpeg
+|   |           images
+|   |           
+|   +---js
+|   |       main.js
+|   |       
+|   +---portfolio_images
+|   |       arona.png
+|   |       mentara.png
+|   |       nique.png
+|   |       rosoi (2).png
+|   |       rosoi.png
+|   |       willeys.png
+|   |       zeki.png
+|   |       
+|   +---scss
+|   |       Readme.txt
+|   |       
+|   \---vendor
+|       +---aos
+|       |       aos.cjs.js
+|       |       aos.css
+|       |       aos.esm.js
+|       |       aos.js
+|       |       aos.js.map
+|       |       
+|       +---bootstrap
+|       |   +---css
+|       |   |       bootstrap-grid.css
+|       |   |       bootstrap-grid.css.map
+|       |   |       bootstrap-grid.min.css
+|       |   |       bootstrap-grid.min.css.map
+|       |   |       bootstrap-grid.rtl.css
+|       |   |       bootstrap-grid.rtl.css.map
+|       |   |       bootstrap-grid.rtl.min.css
+|       |   |       bootstrap-grid.rtl.min.css.map
+|       |   |       bootstrap-reboot.css
+|       |   |       bootstrap-reboot.css.map
+|       |   |       bootstrap-reboot.min.css
+|       |   |       bootstrap-reboot.min.css.map
+|       |   |       bootstrap-reboot.rtl.css
+|       |   |       bootstrap-reboot.rtl.css.map
+|       |   |       bootstrap-reboot.rtl.min.css
+|       |   |       bootstrap-reboot.rtl.min.css.map
+|       |   |       bootstrap-utilities.css
+|       |   |       bootstrap-utilities.css.map
+|       |   |       bootstrap-utilities.min.css
+|       |   |       bootstrap-utilities.min.css.map
+|       |   |       bootstrap-utilities.rtl.css
+|       |   |       bootstrap-utilities.rtl.css.map
+|       |   |       bootstrap-utilities.rtl.min.css
+|       |   |       bootstrap-utilities.rtl.min.css.map
+|       |   |       bootstrap.css
+|       |   |       bootstrap.css.map
+|       |   |       bootstrap.min.css
+|       |   |       bootstrap.min.css.map
+|       |   |       bootstrap.rtl.css
+|       |   |       bootstrap.rtl.css.map
+|       |   |       bootstrap.rtl.min.css
+|       |   |       bootstrap.rtl.min.css.map
+|       |   |       prb.txt
+|       |   |       
+|       |   \---js
+|       |           bootstrap.bundle.js
+|       |           bootstrap.bundle.js.map
+|       |           bootstrap.bundle.min.js
+|       |           bootstrap.bundle.min.js.map
+|       |           bootstrap.esm.js
+|       |           bootstrap.esm.js.map
+|       |           bootstrap.esm.min.js
+|       |           bootstrap.esm.min.js.map
+|       |           bootstrap.js
+|       |           bootstrap.js.map
+|       |           bootstrap.min.js
+|       |           bootstrap.min.js.map
+|       |           
+|       +---bootstrap-icons
+|       |   |   bootstrap-icons.css
+|       |   |   bootstrap-icons.json
+|       |   |   bootstrap-icons.min.css
+|       |   |   bootstrap-icons.scss
+|       |   |   
+|       |   \---fonts
+|       |           bootstrap-icons.woff
+|       |           bootstrap-icons.woff2
+|       |           
+|       +---glightbox
+|       |   +---css
+|       |   |       glightbox.css
+|       |   |       glightbox.min.css
+|       |   |       
+|       |   \---js
+|       |           glightbox.js
+|       |           glightbox.min.js
+|       |           
+|       +---imagesloaded
+|       |       imagesloaded.pkgd.min.js
+|       |       
+|       +---isotope-layout
+|       |       isotope.pkgd.js
+|       |       isotope.pkgd.min.js
+|       |       
+|       +---php-email-form
+|       |       validate.js
+|       |       
+|       +---purecounter
+|       |       purecounter_vanilla.js
+|       |       purecounter_vanilla.js.map
+|       |       
+|       \---swiper
+|               swiper-bundle.min.css
+|               swiper-bundle.min.js
+|               swiper-bundle.min.js.map
+|               
++---blog
++---forms
+|       contact.php
+|       newsletter.php
+|       Readme.txt
+|       
++---php
+|       appdevrequests.php
+|       config.php
+|       contactus.php
+|       graphdesrequests.php
+|       marketingrequests.php
+|       newsletter.php
+|       submit_order.php
+|       webdesigninq.php
+|       
++---plug back in
+|       features section.html
+|       testimonials section
+|       
+\---portfolio
+    |   cta.html
+    |   index.html
+    |   order.html
+    |   rainbow.html
+    |   robustOlderCode.html
+    |   
+    +---arona-template.webflow.io
+    |   |   about.html
+    |   |   blogs.html
+    |   |   blogs@33fd2018_page=1.html
+    |   |   blogs@33fd2018_page=2.html
+    |   |   categories.html
+    |   |   checkout.html
+    |   |   contact-us.html
+    |   |   faq.html
+    |   |   index.html
+    |   |   privacy-policy.html
+    |   |   return-policy.html
+    |   |   reviews.html
+    |   |   reviews@9ef5e312_page=1.html
+    |   |   reviews@9ef5e312_page=2.html
+    |   |   robots.txt
+    |   |   shop.html
+    |   |   shop@30760150_page=1.html
+    |   |   shop@30760150_page=2.html
+    |   |   shop@30760150_page=3.html
+    |   |   terms-conditions.html
+    |   |   
+    |   +---blog-posts
+    |   |       day-to-night-makeup-effortless-looks-for-every-occasion.html
+    |   |       glowing-through-the-seasons-aronas-skincare-survival.html
+    |   |       mastering-minimalism-simplify-your-beauty-routine-with-arona.html
+    |   |       nailed-it-trends-and-tips-from-aronas-nail-care-experts.html
+    |   |       preparing-your-skin-with-aronas-bridal-beauty-guide.html
+    |   |       science-of-beauty-understand-your-skincare-ingredients.html
+    |   |       signature-scents-a-journey-into-the-world-of-fragrance.html
+    |   |       
+    |   +---category
+    |   |       beauty-tools.html
+    |   |       fragrance.html
+    |   |       hair-care.html
+    |   |       makeup.html
+    |   |       nail-care.html
+    |   |       skin-care.html
+    |   |       
+    |   +---product
+    |   |       anti-aging-serum.html
+    |   |       brow-perfection-pencil.html
+    |   |       clear-cleansing-gel.html
+    |   |       crystalclear-nail-hardener.html
+    |   |       enchanted-garden.html
+    |   |       flawless-finish-foundation.html
+    |   |       flawless-foundation.html
+    |   |       hair-repair-oil.html
+    |   |       hydrating-face-mist.html
+    |   |       midnight-serenade-perfume.html
+    |   |       mist-toner.html
+    |   |       precision-brow-definer.html
+    |   |       precision-tweezer-trio.html
+    |   |       pure-essence-cleanser.html
+    |   |       purity-pearl-exfoliant.html
+    |   |       purity-pearl-nail-strengthener.html
+    |   |       reviving-face-scrub.html
+    |   |       silk-satin-lip-gloss.html
+    |   |       soothing-aloe-vera-gel.html
+    |   |       volume-mascara.html
+    |   |       whispering-jasmine.html
+    |   |       youthful-radiance-eye-cream.html
+    |   |       
+    |   \---template-info
+    |           licensing.html
+    |           
+    +---bildium.webflow.io
+    |   |   401.html
+    |   |   404.html
+    |   |   about-one.html
+    |   |   about-three.html
+    |   |   about-two.html
+    |   |   blog-one.html
+    |   |   blog-one@ade909da_page=1.html
+    |   |   blog-one@ade909da_page=2.html
+    |   |   blog-three.html
+    |   |   blog-two.html
+    |   |   changelog.html
+    |   |   checkout.html
+    |   |   contact-one.html
+    |   |   contact-three.html
+    |   |   contact-two.html
+    |   |   home-one.html
+    |   |   home-three.html
+    |   |   home-two.html
+    |   |   index.html
+    |   |   license.html
+    |   |   pricing-one.html
+    |   |   pricing-three.html
+    |   |   pricing-two.html
+    |   |   reset-password.html
+    |   |   robots.txt
+    |   |   service-one.html
+    |   |   service-three.html
+    |   |   service-two.html
+    |   |   signin.html
+    |   |   signup.html
+    |   |   style-guide.html
+    |   |   team.html
+    |   |   
+    |   +---blog-details
+    |   |       3d-printing-revolutionizing-construction.html
+    |   |       common-mistakes-to-avoid-in-building-projects.html
+    |   |       how-to-maximize-space-in-small-home-construction.html
+    |   |       modern-home-designs-for-every-budget.html
+    |   |       my-vision-for-the-future-of-my-career.html
+    |   |       neglecting-building-codes-and-permits.html
+    |   |       the-art-of-building-brand-driven-portfolios.html
+    |   |       the-benefits-of-using-steel-frames-in-construction.html
+    |   |       the-key-values-that-guide-my-work-ethic.html
+    |   |       the-power-of-sustainability-in-modern-construction.html
+    |   |       the-rise-of-remote-construction-management.html
+    |   |       why-modular-construction-is-gaining-popularity.html
+    |   |       
+    |   +---product
+    |   |       business-plan.html
+    |   |       enterprise-plan.html
+    |   |       starter-plan.html
+    |   |       
+    |   \---team-details
+    |           anthony-via.html
+    |           bernie-legge.html
+    |           eric-castman.html
+    |           irene-brown.html
+    |           linda-lopez.html
+    |           marie-burns.html
+    |           robert-moore.html
+    |           royal-hawkins.html
+    |           
+    +---crave
+    |   |   Crave - Webflow HTML website template.html
+    |   |   
+    |   \---Crave - Webflow HTML website template_files
+    |           65e057f3bacc88f0c2ad3ad6_brand.svg
+    |           65e065743607c275d0ac11c0_ic-insta.svg
+    |           65e06574575f1ff899e3d063_ic-fb.svg
+    |           65e06574e3c3dbd4c49c6f1b_ic-twitter.svg
+    |           65e06574e48f67f758b45d06_ic-yt.svg
+    |           65e170befdc342b6282dc82d_blog-thumb-05.jpg
+    |           65e170d7f7363ec93d904690_blog-thumb-06.jpg
+    |           65e170f48da9085a4488ea01_blog-thumb-07.jpg
+    |           65e1aaa01158ca9d1ae6ea88_review-thumb-03.jpg
+    |           65e1aaa03636d8d40339527c_review-thumb-04.jpg
+    |           65e1aaa07f9cdfad6f24fe1f_review-thumb-02.jpg
+    |           65e1aaa08d3056d05d76826e_review-thumb-01.jpg
+    |           65e1aaa0d3fe0be41205add8_review-thumb-05.jpg
+    |           65e1aaa0d53034ef605b3783_review-thumb-06.jpg
+    |           65e1aaa16ad393833040ba80_review-thumb-07.jpg
+    |           65e1ac918d3056d05d7767be_right-arrow.svg
+    |           65e1ac927408fde948848850_left-arrow.svg
+    |           65e1b58646ba1bcac53142ca_reservation.jpg
+    |           65e1c20822f1cf0e8d7621c1_chef-thumb-01.jpg
+    |           65e1c208241015a649ff8f94_chef-thumb-03.jpg
+    |           65e1c208bc16dfc067f9f2df_chef-thumb-04.jpg
+    |           65e1c208d7cd878c1210d269_chef-thumb-02.jpg
+    |           65e1c4ba1fbd894e8f0266b8_instagram-thumb-03.jpg
+    |           65e1c4ba61ac8c6c1748dfd3_instagram-thumb-04.jpg
+    |           65e1c4bafa8a4d44a9e9e19c_instagram-thumb-02.jpg
+    |           65e1c4bb8428a955c918fb44_instagram-thumb-01.jpg
+    |           65e1c9705015c3ea76104996_instagram-thumb-05.jpg
+    |           65e1cd7442624b88455caf18_moment-2.jpg
+    |           65e1cd749c128675b0a93ce5_moment-1.jpg
+    |           65e54bf00268284c898c26ee_menu-main.jpg
+    |           65e5524842a5e623f8872bdb_Fresh Foods.svg
+    |           65e552487f7481b874ded747_Seasonal Specials.svg
+    |           65e552487f9f5016be2fd85e_Cocktails Bar Experience.svg
+    |           65e555a3cff7f8be3f60bcac_Story-1.jpg
+    |           65e555a3d292a3b9c9349e86_Story-2.jpg
+    |           65e559307ad204ba9b2a0546_hero.jpg
+    |           65e55a2f40f3a8005067c0a3_Hero-1.jpg
+    |           65e55bb00caabe7e98b06894_hero-review-2.jpg
+    |           65e55bb0ad9a499a5c644d0d_Hero-review.jpg
+    |           65e561b4171ab7d9e063efa5_Arrow.svg
+    |           666025f36aeea32a7a1e3dd9_icon-webflow.svg
+    |           666025f36aeea32a7a1e3ddd_text-download.svg
+    |           crave-template.webflow.css
+    |           jquery-3.5.1.min.js
+    |           styles.css
+    |           webflow.js
+    |           webfont.js
+    |           
+    +---images
+    |       favicon.png
+    |       
+    +---mentara.webflow.io
+    |   |   401.html
+    |   |   404.html
+    |   |   about.html
+    |   |   blog.html
+    |   |   contact.html
+    |   |   index.html
+    |   |   projects.html
+    |   |   robots.txt
+    |   |   service.html
+    |   |   team.html
+    |   |   
+    |   +---blogs
+    |   |       boost-your-mental-wellness.html
+    |   |       embrace-mental-strength.html
+    |   |       mental-health-insights.html
+    |   |       mind-matters-today.html
+    |   |       mindfulness-practices.html
+    |   |       thriving-minds-unite.html
+    |   |       
+    |   +---projects
+    |   |       creative-expression-workshop.html
+    |   |       emotional-wellness-initiative.html
+    |   |       mental-resilience-program.html
+    |   |       mindful-living-project.html
+    |   |       
+    |   +---services
+    |   |       calm-mind-help.html
+    |   |       care-for-families.html
+    |   |       couple-therapy.html
+    |   |       family-therapy.html
+    |   |       healing-horizons.html
+    |   |       home-heart-healing.html
+    |   |       mind-wellness-therapy.html
+    |   |       mindful-retreats.html
+    |   |       pathway-to-peace.html
+    |   |       
+    |   +---team
+    |   |       dr-david-lee.html
+    |   |       dr-emily-roberts.html
+    |   |       dr-michael-johnson.html
+    |   |       dr-rachel-green.html
+    |   |       dr-sarah-williams.html
+    |   |       dr-thomas-white.html
+    |   |       
+    |   \---template-info
+    |           changelog.html
+    |           license.html
+    |           style-guide.html
+    |           
+    +---nique-template.webflow.io
+    |   |   401.html
+    |   |   404.html
+    |   |   blog.html
+    |   |   checkout.html
+    |   |   classes.html
+    |   |   contact.html
+    |   |   index.html
+    |   |   menu.html
+    |   |   reservation.html
+    |   |   restaurant.html
+    |   |   robots.txt
+    |   |   shop.html
+    |   |   
+    |   +---category
+    |   |       gift-cards.html
+    |   |       
+    |   +---class
+    |   |       coffee-time.html
+    |   |       delicious-breakfast.html
+    |   |       homemade-honey.html
+    |   |       salad-style.html
+    |   |       vegan-burger.html
+    |   |       
+    |   +---post
+    |   |       brand-new-kitchen.html
+    |   |       classic-dinner-night.html
+    |   |       gatsby-night.html
+    |   |       new-restaurant.html
+    |   |       romantic-dinner.html
+    |   |       
+    |   +---product
+    |   |       gift-card-gold.html
+    |   |       gift-card-light.html
+    |   |       gift-card-premium.html
+    |   |       gift-card-standard.html
+    |   |       
+    |   \---template-info
+    |           changelog.html
+    |           licensing.html
+    |           styleguide.html
+    |           
+    +---rosoi.webflow.io
+    |   |   about-1.html
+    |   |   about-2.html
+    |   |   blog.html
+    |   |   blog@fa8d48bb_page=1.html
+    |   |   blog@fa8d48bb_page=2.html
+    |   |   book-a-table.html
+    |   |   change-log.html
+    |   |   checkout.html
+    |   |   chef.html
+    |   |   chef@81609a3e_page=1.html
+    |   |   chef@81609a3e_page=2.html
+    |   |   contact-1.html
+    |   |   contact-2.html
+    |   |   ecommerce-menu-2.html
+    |   |   ecommerce-menu.html
+    |   |   ecommerce-menu@60dfeda8_page=1.html
+    |   |   ecommerce-menu@60dfeda8_page=2.html
+    |   |   gallery.html
+    |   |   home-2.html
+    |   |   home-ecommerce.html
+    |   |   index.html
+    |   |   licenses.html
+    |   |   menu-1.html
+    |   |   menu-2.html
+    |   |   robots.txt
+    |   |   style-guide.html
+    |   |   
+    |   +---blog-author
+    |   |       david.html
+    |   |       rose.html
+    |   |       smith.html
+    |   |       
+    |   +---blog-category
+    |   |       events.html
+    |   |       food-festivals.html
+    |   |       food-reviews.html
+    |   |       food-story.html
+    |   |       recipes.html
+    |   |       
+    |   +---blog-tags
+    |   |       desert.html
+    |   |       dinner.html
+    |   |       food.html
+    |   |       lunch.html
+    |   |       
+    |   +---blogs
+    |   |       delicious-indian-food-festival-in-our-restaurant-for-all.html
+    |   |       details-about-our-all-events-for-new-year-celebration.html
+    |   |       discover-the-new-menu-with-our-new-chef-mistry-test.html
+    |   |       great-food-can-make-your-all-party-more-enjoyable.html
+    |   |       how-can-convert-your-dinner-more-enjoyable-and-testy.html
+    |   |       its-very-important-to-make-healthy-kitchen-for-fresh-food.html
+    |   |       mistri-of-japanese-food-can-make-you-surprise-all-time.html
+    |   |       new-menu-added-our-menu-you-can-exchange-your-test.html
+    |   |       
+    |   +---category
+    |   |       american.html
+    |   |       chinese.html
+    |   |       french.html
+    |   |       indian.html
+    |   |       italian.html
+    |   |       
+    |   +---chefs
+    |   |       alex-fargunes.html
+    |   |       lorenzo-morelli.html
+    |   |       michel-bivahn.html
+    |   |       robert-williamson.html
+    |   |       shane-watson.html
+    |   |       sofiya-muntajer.html
+    |   |       sturart-macgil.html
+    |   |       william-de-smith.html
+    |   |       
+    |   \---product
+    |           chicken-veg-rice-bowl.html
+    |           couscous-with-mussels.html
+    |           fried-fish-carp.html
+    |           garlic-shrimp-spaghetti.html
+    |           healthy-vegan-salad.html
+    |           italian-shrimp-pasta.html
+    |           melted-steak-kebab.html
+    |           mixed-rice-bowl.html
+    |           roosted-turkey.html
+    |           spaghetti-with-shrimp.html
+    |           spicy-chicken-biryani.html
+    |           tandoori-chicken.html
+    |           
+    +---willey-fragrance.webflow.io
+    |   |   401.html
+    |   |   404.html
+    |   |   about-us.html
+    |   |   blog.html
+    |   |   changelog.html
+    |   |   checkout.html
+    |   |   collection.html
+    |   |   contact-us.html
+    |   |   cookie-policy.html
+    |   |   index.html
+    |   |   licenses.html
+    |   |   privacy-policy.html
+    |   |   robots.txt
+    |   |   shop.html
+    |   |   style-guide.html
+    |   |   trems-and-condition.html
+    |   |   
+    |   +---assets
+    |   |   \---img
+    |   |           logo.png
+    |   |           
+    |   +---blogcategory
+    |   |       articles.html
+    |   |       news.html
+    |   |       resources.html
+    |   |       
+    |   +---category
+    |   |       new-arrival.html
+    |   |       offers.html
+    |   |       
+    |   +---post
+    |   |       guide-to-always-smelling.html
+    |   |       reveal-the-woman-within.html
+    |   |       secret-fragrances-for-women.html
+    |   |       top-5-timeless-fragrances.html
+    |   |       we-bring-you-the-best.html
+    |   |       we-know-that-buying-items.html
+    |   |       
+    |   \---product
+    |           flower-mist.html
+    |           metropolitan-mist.html
+    |           ocean-cologne.html
+    |           red-fire-mist.html
+    |           rose-flower.html
+    |           sun-bleach-mist.html
+    |           
+    \---zeki-template.webflow.io
+        |   404.html
+        |   about.html
+        |   blog.html
+        |   changelog.html
+        |   checkout.html
+        |   contact.html
+        |   faq.html
+        |   index.html
+        |   licenses.html
+        |   robots.txt
+        |   shop.html
+        |   shop@5975e6f9_page=1.html
+        |   shop@5975e6f9_page=2.html
+        |   style-guide.html
+        |   
+        +---blog-categories
+        |       nutrition-recipes.html
+        |       organic-living.html
+        |       skincare-tips.html
+        |       
+        +---category
+        |       baby-kids.html
+        |       herbal-supplements.html
+        |       new-arrivals.html
+        |       organic-foods.html
+        |       skincare-beauty.html
+        |       
+        +---post
+        |       5-skin-care-tips-everyone-should-do-even-if-youre-lazy-about-it.html
+        |       healthy-habits-exploring-alternative-healthy-recipes-for-daily-nutrition.html
+        |       heart-health-diet-delicious-recipes-and-essential-nutrition-tips-for-a-strong-heart.html
+        |       how-can-you-live-organic-life-without-making-holes-in-your-pocket.html
+        |       how-to-deal-with-summer-dehydration-and-winter-dry-skin.html
+        |       organic-living-what-is-it-and-how-can-it-work-for-me.html
+        |       
+        \---product
+                avocado-moisturizer.html
+                baby-body-wash.html
+                bamboo-toothbrush-4-pack.html
+                calmherb-sleep-drops.html
+                greenglow-detox-tea.html
+                organic-lip-balm.html
+                turmeric-capsules.html
+                
