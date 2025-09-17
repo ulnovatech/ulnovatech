@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: ${{ secrets.FTP_PORT }}           # optional, defaults to 21
-          local-dir: ./ulnovatech/               # deploy contents of project folder
+          local-dir: ./               # deploy contents of project folder
           server-dir: /htdocs/
 
           #server-dir: ${{ secrets.FTP_DIR }}      #should be /htdocs/ and must end with /
