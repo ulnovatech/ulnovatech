@@ -1,0 +1,104 @@
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section dark-background">
+      <img src="assets/img/testimonials-bg.jpg" class="testimonials-bg" alt="">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/avatar - male.jpeg" class="testimonial-img" alt="">
+                <h3>Julius Kaggwa</h3>
+                <h4>Events Organizer – Kampala</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>The team helped us automate our booking system from the ground up. There were a few learning curves, but everything was well documented and explained. It is saving us hours of manual work each week.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/avatar - female.png" class="testimonial-img" alt="">
+                <h3>Rebecca Nansubuga</h3>
+                <h4>Designer - Jinja</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Clean design, fast delivery. Took a bit of back-and-forth to get it right, but the team was open to feedback and quick to adjust. In the end, the site turned out better than we had imagined.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/avatar - male.jpeg" class="testimonial-img" alt="">
+                <h3>Dan Mugisha</h3>
+                <h4>Retail Business Owner – Mbarara</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>The system worked well for our team, though we needed some help during setup — support was quick and friendly.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div><!-- End testimonial item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/avatar - male.jpeg" class="testimonial-img" alt="">
+                <h3>Brian Okello</h3>
+                <h4>NGO Tech Lead – Lira</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Nice design, flexible to changes, and a responsive team. We didn’t understand all the technical aspects at first, but they broke things down in simple terms. That made the whole process smooth and stress-free.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+            <!-- End testimonial item -->
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <img src="assets/img/testimonials/avatar - female.png" class="testimonial-img" alt="">
+                <h3>Grace Auma - Gulu</h3>
+                <h4>Entrepreneur</h4>
+                <div class="stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                </div>
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>We were impressed with the mobile app’s performance. A couple of features took a bit longer to integrate, but the communication stayed open and professional throughout. It's now a major part of our daily operations.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+              </div>
+            </div>
+            <!-- End testimonial item -->
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+    <!-- /Testimonials Section -->

@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>UlnovaTech - Official Website</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+</head>
+<style>
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    .floating-icons {
+      position: fixed;
+      right: 20px;
+      bottom: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .floating-icons a {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      text-decoration: none;
+      color: #000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .no-bg-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      margin: 0 5px;
+      color: #000;
+    }
+    .no-bg-btn.active .far {
+      color: #ff0000;
+    }
+    .floating-icons a.whatsapp {
+      color: #25D366;
+    }
+    .floating-icons a.phone {
+      color: #007BFF;
+    }
+    .floating-icons a.whatsapp:hover {
+      color: #fff;
+      background-color: #25D366;
+    }
+    .floating-icons a.phone:hover {
+      color: #fff;
+      background-color: #007BFF;
+    }
+
+    .why-section {
+      padding: 40px 0;
+      text-align: center;
+      background-color: #0d1117;
+      color: #fff;
+      width: 100vw; /* Full viewport width */
+      margin: 0; /* Remove default margins */
+    }
+    .why-section .container {
+      max-width: 1200px; /* Constrain inner content width */
+      margin: 0 auto; /* Center the content */
+      padding: 0 15px; /* Add minimal padding for small screens */
+    }
+    .why-section h2 {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .why-section p.lead {
+      color: #b0b0b0;
+      margin-bottom: 40px;
+      font-size: 16px;
+    }
+    .why-card {
+      background-color: #0f1a2b;
+      border: 1px solid #1a2942;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+      min-height: 100%;
+      transition: 0.3s;
+    }
+    .why-card:hover {
+      border: 1.5px solid white;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.35);
+    }
+    .why-icon {
+      font-size: 24px;
+      margin-bottom: 15px;
+      padding: 12px;
+      border-radiusとも: 8px;
+      display: inline-block;
+      background: rgba(255,255,255,0.05);
+    }
+    .why-card h5 {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .why-card p {
+      color: #b0b0b0;
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+    /* New styles for Call Us links */
+    .info-item a[href^="tel:"] {
+      color: grey; /* Green color, matching WhatsApp green for consistency */
+      text-decoration: underline; /* Underlined text */
+    }
+    .info-item a[href^="tel:"]:hover {
+      color: black;
+      text-decoration: underline; /* Maintain underline on hover */
+    }
+  </style>
+
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">UlnovaTech</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+    
+          <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#webdesign">Website development</a></li>
+              <li><a href="#appdev">Mobile app development</a></li>
+              <li><a href="#">IT consulting</a></li>
+              <li><a href="#">Remote tech support</a></li>
+              <li><a href="#marketing">Digital marketing & SEO</a></li>
+              <li><a href="#">UI/UX design</a></li>
+              <li><a href="#">Network setup</a></li>  
+            </ul>      
+          </li>
+
+          <li><a href="portfolio/">Portfolio</a></li>
+          <li class="dropdown"><a href="#"><span>All Products</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#webdev">Websites</a></li>
+              <li class="dropdown"><a href="#appdev"><span>Apps</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">E-Commerce</a></li>
+                  <li><a href="#">Delivery Apps</a></li>
+                  <li><a href="#">Restaurant Apps</a></li>
+                  <li><a href="#">Chat Apps</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#"><span>Management Systems</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Buisness Mgt Systems</a></li>
+                  <li><a href="#">Store Management</a></li>
+                  <li><a href="#">Professional Dashboards</a></li>
+                  <li><a href="#">Data Processing</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#graphics"><span>Graphics Design</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Animation Videos</a></li>
+                  <li><a href="#">Logos</a></li>
+                  <li><a href="#">Product Designs</a></li>
+                  <li><a href="#">Branding</a></li>
+                  <li><a href="#">Banners, Flyers, Posters</a></li>
+                  <li><a href="#">Wedding Invitations</a></li>
+                  <li><a href="#">Invitation Cards</a></li>            
+                </ul>
+              </li>
+               <li class="dropdown"><a href="#"><span>Advertisements</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Video Ads</a></li>
+                  <li><a href="#">Social Media Ads</a></li>
+                  <li><a href="#">Product Ads</a></li>
+                  <li><a href="#">Buisness Ads</a></li>
+                  <li><a href="#">Public Announcements</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="cta-btn" href="portfolio/">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/ulnova3.jpg" alt="" data-aos="fade-in">
+
+      <div class="container d-flex flex-column align-items-center">
+        <h2 data-aos="fade-up" data-aos-delay="100">
+          <span id="animated-sentence"></span>
+        </h2>
+
+        <p class="description" data-aos="fade-up" data-aos-delay="200">
+          Creative tech experts crafting custom digital solutions that fit your needs.
+          <span id="more-text" style="display: none;">
+            We’re a team of skilled tech artisans and designers dedicated to making and delivering apps, websites, graphics, animations, and more.<br><br>
+            — built to work your way, tailored to every client’s vision and needs. Our team ensures that every project combines creativity, usability, and technology to deliver outstanding results.
+          </span>
+  
+          <a href="#" id="read-more" style="color: #ff4a17; text-decoration: none;"> Read More</a>
+          </p>
+
+        <!-- <p class="description" data-aos="fade-up" data-aos-delay="200">
+  We’re a team of skilled tech artisans and designers dedicated to making and delivering satisfactory apps, websites, graphics, animations, and more — built to work your way.
+</p> -->
+
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="portfolio/" class="btn-get-started">Get Started</a>
+          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Featured Services<br></p>
+      </div><!-- End Section Title -->
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5">
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>Custom Software Development</h3>
+                </a>
+                <p>We build powerful backend systems, automation tools, and business platforms tailored to your workflow.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>Web & Mobile App Development</h3>
+                </a>
+                <p>From sleek websites to scalable mobile apps — we design, develop, and deploy full-stack digital solutions.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-easel"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>IT Services & Technical Support</h3>
+                </a>
+                <p>Infrastructure setup, Network Installations, tech consulting, and reliable support to keep your systems running smoothly.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+        </div>
+      </div>
+    </section><!-- /Services Section -->
+
+    <!-- Services 2 Section -->
+    <section id="services-2" class="services-2 section light-background">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>CHECK OUT OUR SERVICES</p>
+      </div><!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-briefcase icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">UI/UX Design</a></h4>
+                <p class="description">We craft clean, intuitive interfaces that look great and feel natural for your users.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-card-checklist icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">API Integration</a></h4>
+                <p class="description">Seamlessly connect your app or website with payment systems like MTN MOMO, Airtel Money, Banks, CRMs, or external services.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-bar-chart icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">E-commerce Solutions</a></h4>
+                <p class="description">Launch a secure online store with full inventory, payment, and customer features.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-binoculars icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Digital Marketing</a></h4>
+                <p class="description">We help you reach the right audience through smart SEO, social media, content, and online ad strategies — built to grow your brand and sales.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-brightness-high icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Maintenance & Support</a></h4>
+                <p class="description">Ongoing updates, bug fixes, and tech help to keep your product running smoothly.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-calendar4-week icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Tech Consulting</a></h4>
+                <p class="description">Get expert advice on the right tools, platforms, or strategy for your project.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+        </div>
+      </div>
+    </section><!-- /Services 2 Section -->
+
+    <!-- Why Choose us Section --> 
+    <section class="why-section">
+    <div class="container">
+      <h2>Why Choose Us</h2>
+      <p class="lead">We’re here to make things easier for you. Our services are built around your needs, so you can get started without stress.</p>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-primary text-white"><i class="fas fa-users"></i></div>
+            <h5>Expert &amp; Professional Team</h5>
+            <p>We’re a team of skilled people who love what we do. You can count on us to handle your project with care and creativity.</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-info"><i class="fas fa-clock"></i></div>
+            <h5>Quick Delivery</h5>
+            <p>We work fast without cutting corners. Your order gets to you on time so you don’t have to wait around.</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-success"><i class="fas fa-coins"></i></div>
+            <h5>Affordable Price</h5>
+            <p>Good quality doesn’t always mean expensive. We keep our prices fair so you get real value for your money.</p>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-warning"><i class="fas fa-award"></i></div>
+            <h5>Satisfaction Guarantee</h5>
+            <p>We want you to be happy with our work. If something isn’t right, we’ll fix it until you’re satisfied.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p style="text-transform: none;">Let's talk about your project.</p>
+  </div><!-- End Section Title -->
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <div class="row gy-4">
+          <div class="col-lg-12">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt"></i>
+              <h3><b>Address</b></h3>
+              <p>Kampala, Uganda</p>
+            </div>
+          </div><!-- End Info Item -->
+          <div class="col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone"></i>
+              <h3><b>Lets Talk</b></h3>
+              <div class="d-flex flex-row">
+                <a href="tel:+256791779448" class="me-3">+256 791779448</a>
+                <a href="tel:+256749594464" class="me-3">+256 749594464</a>
+              </div>
+            </div>
+          </div><!-- End Info Item -->
+          <div class="col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope"></i>
+              <h3><b>Email Us</b></h3>
+              <p>ulnovatech@gmail.com</p>
+            </div>
+          </div><!-- End Info Item -->
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <form action="php/contactus.php" method="post" class="php-email-form" autocomplete="off">
+          <div class="row gy-4">
+            <div class="col-md-12">
+              <input type="text" name="name" class="form-control" placeholder="Your Name" required autocomplete="off">
+            </div>
+            <div class="col-md-6">
+              <input type="text" name="phone" class="form-control" placeholder="Your Phone" required autocomplete="off">
+            </div>
+            <div class="col-md-6">
+              <input type="email" name="email" class="form-control" placeholder="Your Email (Optional)"  autocomplete="off">
+            </div>
+            <div class="col-md-12">
+              <input type="text" name="subject" class="form-control" placeholder="Subject" required autocomplete="off">
+            </div>
+            <div class="col-md-12">
+              <textarea name="message" class="form-control" rows="4" placeholder="Message" required autocomplete="off"></textarea>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="loading" style="display: none;">Loading</div>
+              <div class="error-message" style="display: none; color: white;"></div>
+              <div class="sent-message" style="display: none; color: white;"></div>
+            </div>
+            <div class="col-md-12 text-center">
+              <button type="submit" name="submit" class="btn btn-success" style="background-color: #1E3A8A;">Send Message</button>
+            </div>
+          </div>
+        </form>
+      </div><!-- End Contact Form -->
+    </div>
+  </div>
+</section><!-- /Contact Section -->
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">
+              <img src="assets/img/uln-logo.png">
+            </span>            
+          </a>
+         <p class="pt-3" style="color: ">Website, App & System development • IT services</p>
+          <div class="footer-contact pt-3">
+            <p>Kampala, Uganda</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+256 772169960</span></p>
+            <p><strong>Email:</strong> <span>ulnovatech@gmail.com</span></p>
+            <p>“Address coming soon. Office under development”</p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="https://x.com/ulnova26716"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.instagram.com/ulnovatech/?hl=en"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ulnova-tech-394547376/"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.youtube.com/@UlnovaTech"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form action="php/newsletter.php" method="post" id="newsletterForm">
+            <div class="newsletter-form">
+              <input type="email" name="email" required placeholder="Enter your email">
+              <input type="submit" value="Subscribe">
+            </div>
+            <div class="loading" style="display:none;">Loading...</div>
+            <div class="error-message" style="display:none; color:red;"></div>
+            <div class="sent-message" style="display:none; color:green;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© 2025<span> Copyright</span> <strong class="px-1 sitename">UlnovaTech</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://ulnovatech.com/">UlnovaTech</a>
+      </div>
+    </div>
+  </footer>
+<div class="floating-icons">
+        <a href="https://wa.me/0749594464" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+256791779448" class="phone"><i class="fas fa-phone"></i></a>
+    </div>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+
+
+
+  <!-- Vendor JS Files -->
+  <!-- Main JS File and Modal Scripts -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+  // Function to handle modal open/close
+  function setupModal(openBtnId, modalId, closeBtnId) {
+    const openBtn = document.getElementById(openBtnId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeBtnId);
+
+    openBtn.onclick = () => modal.style.display = "flex";
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
+
+  // Function to handle form submission
+  function setupForm(formId, msgBoxId, actionUrl) {
+    const form = document.getElementById(formId);
+    const msgBox = document.getElementById(msgBoxId);
+    const countrySelect = form.querySelector('select[name="country"]');
+    const countryCodeSpan = form.querySelector('.input-group-text');
+    const phoneInput = form.querySelector('input[name="phone"]');
+
+    // Update country code prefix
+    countrySelect.addEventListener('change', () => {
+      countryCodeSpan.textContent = countrySelect.value;
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msgBox.style.display = 'none';
+
+      const formData = new FormData(form);
+      formData.set('phone', countrySelect.value + phoneInput.value);
+
+      try {
+        const res = await fetch(actionUrl, {
+          method: 'POST',
+          body: formData
+        });
+        const response = await res.json();
+        msgBox.style.display = 'block';
+        if (response.status === 'success') {
+          msgBox.className = 'alert alert-success';
+          msgBox.innerText = '✅ Request sent successfully!';
+          form.reset();
+          countryCodeSpan.textContent = countrySelect.value; // Reset country code
+        } else {
+          msgBox.className = 'alert alert-danger';
+          msgBox.innerText = '❌ Failed to send. Please try again.';
+        }
+      } catch (error) {
+        msgBox.style.display = 'block';
+        msgBox.className = 'alert alert-danger';
+        msgBox.innerText = '❌ Server error. Try again later.';
+      }
+    });
+  }
+
+  // Setup modals
+  setupModal('openWebFormBtn', 'webDevModal', 'closeWebModal');
+  setupModal('openAppFormBtn', 'appDevModal', 'closeAppModal');
+  setupModal('openGraphicsFormBtn', 'graphicsDevModal', 'closeGraphicsModal');
+  setupModal('openMarketingFormBtn', 'marketingDevModal', 'closeMarketingModal');
+
+  // Setup form submissions
+  setupForm('webDevForm', 'webDevMsg', 'php/webdesigninq.php');
+  setupForm('appDevForm', 'appDevMsg', 'php/appdevrequests.php');
+  setupForm('graphicsDevForm', 'graphicsDevMsg', 'php/graphdesrequests.php');
+  setupForm('marketingDevForm', 'marketingDevMsg', 'php/marketingrequests.php');
+</script>
+
+<!-- Newsletter Form Script -->
+<script>
+  const newsletterForm = document.getElementById('newsletterForm');
+  const loading = newsletterForm.querySelector('.loading');
+  const errorMsg = newsletterForm.querySelector('.error-message');
+  const sentMsg = newsletterForm.querySelector('.sent-message');
+
+  newsletterForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    loading.style.display = 'block';
+    errorMsg.style.display = 'none';
+    sentMsg.style.display = 'none';
+
+    const formData = new FormData(newsletterForm);
+    try {
+      const response = await fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      loading.style.display = 'none';
+
+      if (response.ok && result.status === 'success') {
+        sentMsg.textContent = result.message;
+        sentMsg.style.display = 'block';
+        newsletterForm.reset();
+      } else {
+        errorMsg.textContent = result.message || 'An error occurred. Please try again.';
+        errorMsg.style.display = 'block';
+      }
+    } catch (error) {
+      loading.style.display = 'none';
+      errorMsg.textContent = 'An error occurred. Please try again.';
+      errorMsg.style.display = 'block';
+    }
+  });
+</script>
+
+
+<!-- Typed -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const greenColor = "green";
+  const accentColor = "#ff4a17";
+
+  const swapWords = ["APPS", "WEBSITES", "GRAPHICS", "SOFTWARE"];
+  const phase1Text = ["BUILDING ", "TECH", "\nTHAT WORKS, YOUR WAY."]; // split for coloring
+
+  const sentenceEl = document.getElementById("animated-sentence");
+
+  // Phase 1: type full sentence letter by letter
+  function typePhase1(callback) {
+    sentenceEl.innerHTML = ""; // clear
+    let partIndex = 0;
+    let charIndex = 0;
+
+    function typeChar() {
+      if(partIndex >= phase1Text.length) {
+        setTimeout(callback, 1000); // wait 1s after full sentence
+        return;
+      }
+
+      let part = phase1Text[partIndex];
+      let isWord = (partIndex === 1); // "TECH" part
+
+      if(isWord){
+        if(!sentenceEl.querySelector("span")) {
+          const span = document.createElement("span");
+          span.style.color = greenColor;
+          sentenceEl.appendChild(span);
+        }
+        const span = sentenceEl.querySelector("span");
+        span.textContent += part[charIndex];
+      } else {
+        sentenceEl.innerHTML += part[charIndex] === "\n" ? "<br>" : part[charIndex];
+      }
+
+      charIndex++;
+      if(charIndex >= part.length){
+        partIndex++;
+        charIndex = 0;
+      }
+
+      setTimeout(typeChar, 60);
+    }
+
+    typeChar();
+  }
+
+  // Phase 2: swap words only
+  function animateSwaps(index = 0, callback) {
+    if(index >= swapWords.length){
+      if(callback) callback();
+      return;
+    }
+
+    const wordSpan = sentenceEl.querySelector("span");
+    wordSpan.style.color = accentColor;
+    const word = swapWords[index];
+    let j = 0;
+    wordSpan.textContent = "";
+
+    function typeLetter() {
+      if(j < word.length){
+        wordSpan.textContent += word[j];
+        j++;
+        setTimeout(typeLetter, 100);
+      } else {
+        setTimeout(deleteWord, 1500);
+      }
+    }
+
+    function deleteWord() {
+      if(j > 0){
+        wordSpan.textContent = wordSpan.textContent.slice(0, -1);
+        j--;
+        setTimeout(deleteWord, 50);
+      } else {
+        animateSwaps(index + 1, callback);
+      }
+    }
+
+    typeLetter();
+  }
+
+  // Full loop: Phase1 → Phase2 → repeat
+  function loop() {
+    typePhase1(() => {
+      animateSwaps(0, () => {
+        loop();
+      });
+    });
+  }
+
+  loop();
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const readMoreLink = document.getElementById("read-more");
+  const moreText = document.getElementById("more-text");
+
+  readMoreLink.addEventListener("click", function(e) {
+    e.preventDefault(); // stop the link from jumping
+    if(moreText.style.display === "none"){
+      moreText.style.display = "inline"; // show the hidden content
+      this.textContent = " Read Less";   // change link text
+    } else {
+      moreText.style.display = "none";   // hide the content
+      this.textContent = " Read More";   // revert link text
+    }
+  });
+});
+</script>
+
+
+</body>
+</html>

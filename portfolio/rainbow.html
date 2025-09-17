@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rainbow Border Card</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+
+    /* Outer wrapper with animated border */
+    .rainbow-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 20px;
+      padding: 6px; /* This defines the border thickness */
+      background: linear-gradient(270deg, #ff0080, #7928ca, #2af598, #ff8c00, #00c6ff, #ff0080);
+      background-size: 1200% 1200%;
+      animation: liquidRainbow 12s ease infinite;
+      width: 100%;
+    }
+
+    /* Inner content card */
+    .rainbow-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 30px;
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes liquidRainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    img {
+      border-radius: 10px;
+      width: 100%;
+      height: auto;
+    }
+
+    .btn-cta {
+      background: #28a745;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .btn-cta:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+  <div class="rainbow-wrapper">
+    <div class="rainbow-card">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <img src="https://images.unsplash.com/photo-1581093588401-22aa7b68c6e4?auto=format&fit=crop&w=1000&q=80" alt="Office team working">
+        </div>
+        <div class="col-md-6">
+          <h3 class="fw-bold">Need a full-stack developer for custom development work?</h3>
+          <p>Need help with custom development? We can help you with software engineers experienced in Backend and front-end development.</p>
+          <p>We have a team of experienced React JS, TypeScript, Next JS, Node JS, MongoDB, MySQL, PostgreSQL, AWS engineers & more. Also, you can hire our expert UI/UX designer.</p>
+          <p>Email <a href="mailto:reza@themewagon.com">reza@themewagon.com</a> and get a free quote.</p>
+          <button class="btn btn-cta">Get a Free Quote</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

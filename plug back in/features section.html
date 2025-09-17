@@ -1,0 +1,342 @@
+<!-- Features Section -->
+<section id="features" class="features section">
+  <div class="container">
+    <ul class="nav nav-tabs row d-flex" data-aos="fade-up" data-aos-delay="100">
+      <li class="nav-item col-3" id="webdesign">
+        <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+          <i class="bi bi-binoculars"></i>
+          <h4 class="d-none d-lg-block">Website Design</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3" id="appdev">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+          <i class="bi bi-box-seam"></i>
+          <h4 class="d-none d-lg-block">App Development</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3" id="graphics">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+          <i class="bi bi-brightness-high"></i>
+          <h4 class="d-none d-lg-block">Graphics Design, Animations ...</h4>
+        </a>
+      </li>
+      <li class="nav-item col-3" id="marketing">
+        <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-4">
+          <i class="bi bi-command"></i>
+          <h4 class="d-none d-lg-block">Marketing, SEO and more</h4>
+        </a>
+      </li>
+    </ul>
+    <!-- End Tab Nav -->
+
+    <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+      <!-- Website Design Tab -->
+      <div class="tab-pane fade active show" id="features-tab-1">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Crafting beautiful, responsive, and high-converting websites tailored to your brand.</h3>
+            <p class="fst-italic">
+              We deliver websites that don’t just look good — they work good. Our approach blends clean visuals, intuitive navigation, and purposeful layouts to help your visitors take action and trust your brand.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>We ensure your site looks great and works perfectly across all devices.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>User-friendly interfaces that keep your customers engaged and coming back.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Every design is optimized for speed, performance, and discoverability.</span></li>
+            </ul>
+            <p>
+              We focus on functionality, aesthetics, and brand alignment to deliver websites that truly represent your business online. Whether it's a portfolio, company site, or e-commerce platform, we design with your goals in mind — turning visitors into clients and ideas into results.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <div>
+              <img src="assets/img/working-1.jpg" alt="" class="img-fluid">
+              <div class="text-start mt-md-3 text-md-start">
+                <h4>Where we apply this for you</h4>
+                <ul>
+                  <li>• Company profile websites</li>
+                  <li>• Personal portfolios</li>
+                  <li>• Blogs and news platforms</li>
+                  <li>• Event or NGO websites</li>
+                  <li>• Online booking or contact platforms</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button class="btn btn-needthis" id="openWebFormBtn">I need this</button>
+          </div>
+        </div>
+        <!-- Website Dev Inquiry Modal -->
+        <div id="webDevModal" class="modal-overlay" style="display:none;">
+          <div class="modal-content p-4 bg-white rounded shadow" style="max-width: 500px; position: relative;">
+            <span id="closeWebModal" style="position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer;">×</span>
+            <h5 class="mb-3">Website Design Inquiry</h5>
+            <div id="webDevMsg" style="display:none;" class="alert" role="alert"></div>
+            <form id="webDevForm" method="POST" action="php/webdesigninq.php">
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input name="name" type="text" class="form-control" id="webName" required>
+              </div>
+              <div class="flex-container">
+                <div class="mb-3">
+                  <label for="webPhone" class="form-label">Phone Number</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="webCountryCode">+256</span>
+                    <input type="tel" name="phone" class="form-control" id="webPhone" placeholder="7XXXXXXXX" required>
+                    <div class="mb-3 country">
+                      <select class="form-select" id="webCountry" required>
+                        <option value="+256" selected>🇺🇬 Uganda</option>
+                        <option value="+254">🇰🇪 Kenya</option>
+                        <option value="+255">🇹🇿 Tanzania</option>
+                        <option value="+250">🇷🇼 Rwanda</option>
+                        <option value="+1">🇺🇸 United States</option>
+                        <option value="+44">🇬🇧 United Kingdom</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Describe Your Website or Company</label>
+                <textarea class="form-control" name="description" id="webDescription" rows="4" placeholder="Tell us a little more about what you're planning to make ..." required></textarea>
+              </div>
+              <button type="submit" class="btn accent-btn">Send Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- App Development Tab -->
+      <div class="tab-pane fade" id="features-tab-2">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Building powerful, user-friendly desktop and mobile applications tailored to your goals.</h3>
+            <p>
+              From idea to launch, we develop custom applications that work seamlessly on smartphones, tablets, and desktop computers. Whether you need an Android app, iOS app, Windows software, or cross-platform solution, we bring your vision to life with clean code and a strong user experience.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Apps that are fast, secure, and scalable for any platform.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Intuitive interfaces designed for ease of use and high engagement.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Cross-device compatibility to reach users wherever they are.</span></li>
+            </ul>
+            <p>We combine functionality and design to create reliable applications that solve real problems and deliver value. Whether it’s a business tool, customer portal, e-commerce app, or internal system, our apps are built for performance, ease, and long-term growth.</p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <img src="assets/img/working-4.jpg" alt="" class="img-fluid">
+            <div class="text-start mt-md-3 text-md-start">
+              <h4>Where we apply this for you</h4>
+              <ul>
+                <li>• Mobile banking & Finance apps</li>
+                <li>• E-learning and study tools</li>
+                <li>• Delivery and logistics apps</li>
+                <li>• Event or NGO websites</li>
+                <li>• Desktop management tools (e.g., inventory, HR)</li>
+                <li>• Event ticketing or booking systems</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button class="btn btn-needthis" id="openAppFormBtn">I need this</button>
+          </div>
+        </div>
+        <!-- App Dev Inquiry Modal -->
+        <div id="appDevModal" class="modal-overlay" style="display:none;">
+          <div class="modal-content p-4 bg-white rounded shadow" style="max-width: 500px; position: relative;">
+            <span id="closeAppModal" style="position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer;">×</span>
+            <h5 class="mb-3">App Development Inquiry</h5>
+            <div id="appDevMsg" style="display:none;" class="alert" role="alert"></div>
+            <form id="appDevForm" method="POST" action="php/appdevrequests.php">
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" class="form-control" id="appName" required>
+              </div>
+              <div class="mb-3">
+                <label for="appCountry" class="form-label">Country</label>
+                <select class="form-select" id="appCountry" name="country" required>
+                  <option value="+256" selected>🇺🇬 Uganda (+256)</option>
+                  <option value="+254">🇰🇪 Kenya (+254)</option>
+                  <option value="+255">🇹🇿 Tanzania (+255)</option>
+                  <option value="+250">🇷🇼 Rwanda (+250)</option>
+                  <option value="+1">🇺🇸 United States (+1)</option>
+                  <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="appPhone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="appCountryCode">+256</span>
+                  <input type="tel" name="phone" class="form-control" id="appPhone" placeholder="7XXXXXXXX" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Briefly Describe Your App</label>
+                <textarea class="form-control" name="description" id="appDescription" rows="4" placeholder="Tell us what you're planning to make ..." required></textarea>
+              </div>
+              <button type="submit" class="btn accent-btn">Send Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Graphics Design Tab -->
+      <div class="tab-pane fade" id="features-tab-3">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Creating visuals that speak for your brand and motion that brings your ideas to life.</h3>
+            <p>
+              We design eye-catching graphics and engaging animations that elevate your brand presence across digital platforms. From logos and posters to product explainers and social media clips, we craft visuals that connect with your audience and leave a lasting impression.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Professionally designed logos, banners, and marketing materials.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Motion graphics and explainer videos that simplify complex ideas.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Creative visuals for websites, apps, and social media campaigns.</span></li>
+            </ul>
+            <p class="fst-italic">
+              Our designs are guided by your vision and strategy — whether you need a brand identity, animated content, or powerful promotional visuals, we deliver graphics that are not just beautiful, but effective.
+            </p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <div>
+              <img src="assets/img/working-2.jpg" alt="" class="img-fluid">
+              <div class="text-start mt-md-3 text-md-start">
+                <h4>Where we apply this for you</h4>
+                <ul>
+                  <li>• Logo and branding design</li>
+                  <li>• Social media posts and ads</li>
+                  <li>• Explainer animations for products/services</li>
+                  <li>• Event or NGO websites</li>
+                  <li>• Product packaging visuals</li>
+                  <li>• Presentation and pitch deck design</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button class="btn btn-needthis" id="openGraphicsFormBtn">I need this</button>
+          </div>
+        </div>
+        <!-- Graphics Design Inquiry Modal -->
+        <div id="graphicsDevModal" class="modal-overlay" style="display:none;">
+          <div class="modal-content p-4 bg-white rounded shadow" style="max-width: 500px; position: relative;">
+            <span id="closeGraphicsModal" style="position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer;">×</span>
+            <h5 class="mb-3">Graphics Design Inquiry</h5>
+            <div id="graphicsDevMsg" style="display:none;" class="alert" role="alert"></div>
+            <form id="graphicsDevForm" method="POST" action="php/graphdesrequests.php">
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" class="form-control" id="graphicsName" required>
+              </div>
+              <div class="mb-3">
+                <label for="graphicsCountry" class="form-label">Country</label>
+                <select class="form-select" id="graphicsCountry" name="country" required>
+                  <option value="+256" selected>🇺🇬 Uganda (+256)</option>
+                  <option value="+254">🇰🇪 Kenya (+254)</option>
+                  <option value="+255">🇹🇿 Tanzania (+255)</option>
+                  <option value="+250">🇷🇼 Rwanda (+250)</option>
+                  <option value="+1">🇺🇸 United States (+1)</option>
+                  <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="graphicsPhone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="graphicsCountryCode">+256</span>
+                  <input type="tel" name="phone" class="form-control" id="graphicsPhone" placeholder="7XXXXXXXX" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Describe Your Graphics Needs</label>
+                <textarea class="form-control" name="description" id="graphicsDescription" rows="4" placeholder="Tell us what you're planning to make ..." required></textarea>
+              </div>
+              <button type="submit" class="btn accent-btn">Send Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Marketing and SEO Tab -->
+      <div class="tab-pane fade" id="features-tab-4">
+        <div class="row">
+          <div class="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0">
+            <h3>Boosting your online visibility, traffic, and brand growth through our smart digital strategies.</h3>
+            <p>
+              We help you get discovered and chosen — not just seen. Our marketing services combine SEO, social media, content strategy, and paid advertising to attract the right audience and turn them into loyal customers.
+            </p>
+            <ul>
+              <li><i class="bi bi-check2-all"></i> <span>Search engine optimization (SEO) to rank higher and get found faster on Google, YouTube, Social Media and other search engines.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Targeted online campaigns across Google, Facebook, and more.</span></li>
+              <li><i class="bi bi-check2-all"></i> <span>Content strategies that speak your audience’s language.</span></li>
+            </ul>
+            <p>Our solutions manage marketing and outreach for your brand, specific to your goals — whether you’re building awareness, launching a new product, or upscaling your sales. Be it SEO audits, monthly campaigns, we help your brand grow with clarity and results.</p>
+            <p>Just tell us what you want, then sit back and relax.</p>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <div>
+              <img src="assets/img/working-3.jpg" alt="" class="img-fluid">
+              <div class="text-start mt-md-3 text-md-start">
+                <h4>Where we apply this for you</h4>
+                <ul>
+                  <li>• Improving Google search rankings</li>
+                  <li>• Running Facebook/Google ads</li>
+                  <li>• Writing blogs to drive traffic</li>
+                  <li>• Event or NGO websites</li>
+                  <li>• Building email campaigns</li>
+                  <li>• Promoting launches and special offers</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col-12 text-center">
+            <button class="btn btn-needthis" id="openMarketingFormBtn">I need this</button>
+          </div>
+        </div>
+        <!-- Marketing and SEO Inquiry Modal -->
+        <div id="marketingDevModal" class="modal-overlay" style="display:none;">
+          <div class="modal-content p-4 bg-white rounded shadow" style="max-width: 500px; position: relative;">
+            <span id="closeMarketingModal" style="position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer;">×</span>
+            <h5 class="mb-3">Marketing and SEO Inquiry</h5>
+            <div id="marketingDevMsg" style="display:none;" class="alert" role="alert"></div>
+            <form id="marketingDevForm" method="POST" action="php/marketingrequests.php">
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" class="form-control" id="marketingName" required>
+              </div>
+              <div class="mb-3">
+                <label for="marketingCountry" class="form-label">Country</label>
+                <select class="form-select" id="marketingCountry" name="country" required>
+                  <option value="+256" selected>🇺🇬 Uganda (+256)</option>
+                  <option value="+254">🇰🇪 Kenya (+254)</option>
+                  <option value="+255">🇹🇿 Tanzania (+255)</option>
+                  <option value="+250">🇷🇼 Rwanda (+250)</option>
+                  <option value="+1">🇺🇸 United States (+1)</option>
+                  <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="marketingPhone" class="form-label">Phone Number</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="marketingCountryCode">+256</span>
+                  <input type="tel" name="phone" class="form-control" id="marketingPhone" placeholder="7XXXXXXXX" required>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Describe Your Marketing Needs</label>
+                <textarea class="form-control" name="description" id="marketingDescription" rows="4" placeholder="Tell us what you're planning to make ..." required></textarea>
+              </div>
+              <button type="submit" class="btn accent-btn">Send Request</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!-- /Features Section -->
