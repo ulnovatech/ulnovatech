@@ -1,6 +1,6 @@
 name: Deploy PHP Project to InfinityFree
 
-# Trigger on push to main branch
+# Trigger deployment on push to main branch
 on:
   push:
     branches:
@@ -11,17 +11,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository
+      # 1️⃣ Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Deploy via FTP
-      - name: Deploy to InfinityFree via FTP
+      # 2️⃣ Deploy to InfinityFree via FTP
+      - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: ${{ secrets.FTP_PORT }}         # optional, defaults to 21
-          local-dir: ./                         # root of your project
-          server-dir: ${{ secrets.FTP_DIR }}    # e.g., /htdocs/ulnovatech
+          port: ${{ secrets.FTP_PORT }}           # optional, defaults to 21
+          local-dir: ./ulnovatech/               # deploy contents of project folder
+          server-dir: ${{ secrets.FTP_DIR }}     # should be /htdocs/ and must end with /
