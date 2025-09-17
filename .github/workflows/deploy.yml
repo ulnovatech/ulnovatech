@@ -25,4 +25,3 @@ jobs:
           port: ${{ secrets.FTP_PORT }}         # optional, defaults to 21
           local-dir: ./                         # root of your project
           server-dir: ${{ secrets.FTP_DIR }}    # e.g., /htdocs/ulnovatech
-          git-ftp-args: --insecure --only-new   # upload only changed files
