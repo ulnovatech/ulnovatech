@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-ulnovatech:
+    name: Build public_html (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install PHP + Composer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y composer php-cli php-mysql php-mbstring php-xml php-zip
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build:linux
+
+      - name: Verify public_html output
+        run: |
+          test -f public_html/index.html
+          test -d public_html/dash
+          test -f public_html/ulndash/backend/api.php
+
+  build-discovery:
+    name: Build Discovery Intelligence
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: discovery
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: agency_platform
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql://ci:ci@localhost:5432/agency_platform
+      ALLOW_DEV_AUTH: 'true'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: discovery/pnpm-lock.yaml
+
+      - name: Install, migrate, typecheck, build
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm db:migrate
+          pnpm typecheck
+          pnpm build
+
+  lint-discovery:
+    name: Lint Discovery (optional)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    defaults:
+      run:
+        working-directory: discovery
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: discovery/pnpm-lock.yaml
+
+      - run: |
+          pnpm install --frozen-lockfile
+          pnpm lint

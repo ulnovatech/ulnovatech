@@ -1,0 +1,31 @@
+{
+  "name": "ulnovatech-system",
+  "version": "1.0.0",
+  "description": "Orchestrator for the UlnoVaTech multi-app system",
+  "scripts": {
+    "dev": "concurrently \"npx serve . -p 3000\" \"npm --prefix marketing run dev -- --port 5176\" \"npm --prefix uln-blog run dev -- --port 5173\" \"npm --prefix ulndash/frontend run dev -- --port 5174\" \"npm --prefix portfolio/frontend run dev -- --port 5175\"",
+    "dev:admin-mobile": "npm --prefix admin-mobile run dev",
+    "setup:admin-mobile": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-admin-mobile.ps1",
+    "build:admin-apk": "npm --prefix admin-mobile run build:apk",
+    "build:admin-apk:release": "npm --prefix admin-mobile run build:apk:release",
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/build-production.ps1",
+    "build:linux": "bash scripts/build-production.sh",
+    "docker:ulnovatech": "docker compose -f infra/docker-compose.yml up -d --build",
+    "docker:ulnovatech:down": "docker compose -f infra/docker-compose.yml down",
+    "docker:discovery": "docker compose -f infra/docker-compose.yml -f infra/docker-compose.discovery.yml up -d --build",
+    "docker:discovery:down": "docker compose -f infra/docker-compose.yml -f infra/docker-compose.discovery.yml down",
+    "docker:full": "docker compose -f infra/docker-compose.full.yml up -d --build",
+    "docker:full:down": "docker compose -f infra/docker-compose.full.yml down",
+    "docker:smoke": "bash infra/scripts/smoke-ulnovatech.sh",
+    "docker:smoke:discovery": "bash infra/scripts/smoke-discovery.sh",
+    "docker:smoke:full": "bash infra/scripts/smoke-full.sh",
+    "dev:discovery": "pnpm --prefix discovery dev",
+    "build:discovery": "pnpm --prefix discovery build",
+    "discovery:db:migrate": "pnpm --prefix discovery db:migrate",
+    "discovery:jobs:worker": "pnpm --prefix discovery jobs:worker"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.1"
+  }
+}

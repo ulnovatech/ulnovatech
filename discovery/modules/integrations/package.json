@@ -1,0 +1,20 @@
+{
+  "name": "@agency/integrations",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "tsx src/__tests__/reply-matcher.test.ts"
+  },
+  "dependencies": {
+    "@agency/crm": "workspace:*",
+    "@agency/database": "workspace:*",
+    "@agency/settings": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

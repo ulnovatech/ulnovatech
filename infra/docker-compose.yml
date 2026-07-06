@@ -1,0 +1,62 @@
+# UlnoVaTech — local Docker stack (Chunk 3)
+# nginx + php-fpm + MySQL serving public_html
+
+name: ulnovatech
+
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root_dev_change_me}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ulnovatech}
+      MYSQL_USER: ${MYSQL_USER:-ulnovatech}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-ulnovatech_dev_change_me}
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-h', '127.0.0.1']
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+    networks:
+      - ulnovatech
+
+  php-fpm:
+    build:
+      context: ./php
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ${PUBLIC_HTML_PATH:-../public_html}:/var/www/public_html:ro
+      - ${ULNOVATECH_ENV_FILE:-./env/docker.ulnovatech.env.example}:/var/www/public_html/php/.env:ro
+      - ${ULNOVATECH_ENV_FILE:-./env/docker.ulnovatech.env.example}:/var/www/public_html/ulndash/backend/.env:ro
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - ulnovatech
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - '${HTTP_PORT:-8080}:80'
+    volumes:
+      - ${PUBLIC_HTML_PATH:-../public_html}:/var/www/public_html:ro
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - ./nginx/conf.d/ulnovatech.conf:/etc/nginx/conf.d/ulnovatech.conf:ro
+    depends_on:
+      - php-fpm
+    networks:
+      - ulnovatech
+
+volumes:
+  mysql_data:
+
+networks:
+  ulnovatech:
+    driver: bridge

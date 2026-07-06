@@ -1,0 +1,28 @@
+{
+  "name": "@agency/qualification",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./review-verification": "./src/review-verification.ts"
+  },
+  "scripts": {
+    "test": "tsx src/__tests__/reachability.test.ts && tsx src/__tests__/review-verification.test.ts && tsx src/__tests__/icp-scoring.test.ts && tsx src/__tests__/work-queue-priority.test.ts && tsx src/__tests__/unique-business-ids.test.ts"
+  },
+  "dependencies": {
+    "@agency/accounts": "workspace:*",
+    "@agency/config": "workspace:*",
+    "@agency/database": "workspace:*",
+    "@agency/discovery": "workspace:*",
+    "@agency/intent": "workspace:*",
+    "@agency/settings": "workspace:*",
+    "@agency/intelligence": "workspace:*",
+    "@agency/scoring": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

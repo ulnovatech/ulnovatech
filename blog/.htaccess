@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Don't rewrite requests for API or other apps
+RewriteCond %{REQUEST_URI} !^/api/
+RewriteCond %{REQUEST_URI} !^/ulndash/
+RewriteCond %{REQUEST_URI} !^/dash/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]

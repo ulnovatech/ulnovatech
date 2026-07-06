@@ -1,0 +1,89 @@
+Folder PATH listing
+Volume serial number is BA4C-A794
+C:xampp/htdocs
+
+portfolio/
+	|
+	|
+	+--frontend
+		+
+		|   .gitignore
+		|   eslint.config.js
+		|   index.html
+		|   package-lock.json
+		|   package.json
+		|   postcss.config.cjs
+		|   README.md
+		|   structure.txt
+		|   tailwind.config.js
+		|   vite.config.js
+		|   
+		+---api
+		|   |   developer-quote.php
+		|   |   portfolios.php
+		|   |   
+		|   \---portfolios
+		|           {template}.php
+		|           
+		|           
+		+---portfolio
+		|   +---arona-template.webflow.io
+		|   |     
+		|   |   +---images
+		|   |         licensing.html
+		|   |           
+		|   +---bildium.webflow.io
+		|   |   
+		|   |   +---images
+		|   |      
+		|   +---crave
+		|   |  
+		|   +---mentara.webflow.io
+		|   |  
+		|   |   +---images
+		|   |           
+		|   +---nique-template.webflow.io
+		|   |       
+		|   |   +---images
+		|   |         
+		|   +---rosoi.webflow.io
+		|   |     
+		|   |   +---images
+		|   |         
+		|   +---willey-fragrance.webflow.io
+		|   |  
+		|   |   +---images
+		|   |           
+		|   \---zeki-template.webflow.io
+		|          
+		|       +---images
+		|             
+		+---public
+		|       vite.svg
+		|       
+		\---src
+		    |   App.jsx
+		    |   index.css
+		    |   main.jsx
+		    |   tailwind.css
+		    |         
+		    +---assets
+		    |       react.svg
+		    |       
+		    +---components
+		    |       ContactForm.jsx
+		    |       CTA.jsx
+		    |       FAQ.jsx
+		    |       Footer.jsx
+		    |       Header.jsx
+		    |       PortfolioCard.jsx
+		    |       PricingCard.jsx
+		    |       
+		    +---hooks
+		    |       useFetch.js
+		    |       
+		    \---pages
+		            Home.jsx
+		            Order.jsx
+		            Rainbow.jsx
+	            

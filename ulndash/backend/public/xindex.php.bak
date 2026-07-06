@@ -1,0 +1,102 @@
+<?php
+// Enable CORS
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Handle preflight requests early
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+
+// public/index.php - single entry for API routes
+require __DIR__ . '/../bootstrap.php';
+require __DIR__ . '/../db.php';
+
+require __DIR__ . '/../controllers/CompanyController.php';
+require __DIR__ . '/../controllers/InteractionController.php';
+require __DIR__ . '/../controllers/ImportController.php';
+
+$method = $_SERVER['REQUEST_METHOD'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path = preg_replace('#/+$#', '', $uri);
+
+// allow query param routing (index.php?r=...)
+if (isset($_GET['r'])) {
+    $path = '/' . trim($_GET['r'], '/');
+}
+
+$segments = array_values(array_filter(explode('/', $path)));
+
+$ctlCompany = new CompanyController($pdo);
+$ctlInteraction = new InteractionController($pdo);
+$ctlImport = new ImportController($pdo);
+
+try {
+    if (count($segments) >= 1 && $segments[0] === 'api') {
+
+        // /api/companies routes
+        if (isset($segments[1]) && $segments[1] === 'companies') {
+
+            if ($method === 'GET' && count($segments) === 2) {
+                $ctlCompany->index($_GET);
+
+            } elseif ($method === 'POST' && count($segments) === 2) {
+                $ctlCompany->store();
+
+            } elseif (count($segments) >= 3 && is_numeric($segments[2])) {
+                $id = (int)$segments[2];
+
+                if ($method === 'GET' && count($segments) === 3) {
+                    $ctlCompany->show($id);
+
+                } elseif ($method === 'PUT' && count($segments) === 3) {
+                    $ctlCompany->update($id);
+
+                } elseif ($method === 'DELETE' && count($segments) === 3) {
+                    $ctlCompany->destroy($id);
+
+                } elseif ($method === 'GET' && isset($segments[3]) && $segments[3] === 'interactions') {
+                    $ctlInteraction->index($id);
+
+                } else {
+                    respond(['error' => 'Not implemented'], 404);
+                }
+
+            } else {
+                respond(['error' => 'Not found'], 404);
+            }
+
+        } elseif (isset($segments[1]) && $segments[1] === 'interactions') {
+            if ($method === 'POST') {
+                $ctlInteraction->create(json_body());
+            } else {
+                respond(['error' => 'Not allowed'], 405);
+            }
+
+        } elseif (isset($segments[1]) && $segments[1] === 'import') {
+            if ($method === 'POST' && isset($segments[2]) && $segments[2] === 'companies') {
+                $ctlImport->importCompanies();
+            } else {
+                respond(['error' => 'Not found'], 404);
+            }
+
+        } elseif (isset($segments[1]) && $segments[1] === 'stats') {
+            if ($method === 'GET') {
+                $ctlCompany->stats();
+            } else {
+                respond(['error' => 'Not allowed'], 405);
+            }
+
+        } else {
+            respond(['error' => 'Route not found'], 404);
+        }
+
+    } else {
+        respond(['message' => 'Reachout API. Use /api/...'], 200);
+    }
+
+} catch (Exception $e) {
+    respond(['error' => 'Server error', 'details' => getenv('APP_DEBUG') ? $e->getMessage() : null], 500);
+}

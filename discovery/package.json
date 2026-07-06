@@ -1,0 +1,33 @@
+{
+  "name": "demand-capture-agency-platform",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build --filter=@agency/dashboard",
+    "lint": "turbo lint",
+    "typecheck": "turbo typecheck",
+    "test": "pnpm --filter @agency/dashboard test",
+    "db:generate": "pnpm --filter @agency/database db:generate",
+    "db:migrate": "pnpm --filter @agency/database db:migrate",
+    "db:seed-settings": "pnpm --filter @agency/settings db:seed",
+    "jobs:worker": "pnpm --filter @agency/dashboard jobs:worker",
+    "hunter:worker": "pnpm --filter @agency/dashboard hunter:worker",
+    "intent:rss-poll": "pnpm --filter @agency/dashboard intent:rss-poll",
+    "custom-scrape:poll": "pnpm --filter @agency/dashboard custom-scrape:poll",
+    "discovery:acceptance": "pnpm --filter @agency/discovery discovery:acceptance",
+    "db:studio": "pnpm --filter @agency/database db:studio",
+    "db:wipe-runs": "pnpm --filter @agency/dashboard db:wipe-runs",
+    "db:reset-budget": "pnpm --filter @agency/dashboard db:reset-budget",
+    "geo:generate-cities": "pnpm --filter @agency/geo generate-cities",
+    "geo:sync-cities-db": "pnpm --filter @agency/dashboard geo:sync-cities-db"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@agency/intent",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "tsx src/__tests__/parse-rss.test.ts && tsx src/__tests__/scoring-intent.test.ts && tsx src/__tests__/parse-prospect.test.ts && tsx src/__tests__/demand-inbox.test.ts"
+  },
+  "dependencies": {
+    "@agency/accounts": "workspace:*",
+    "@agency/acquisition": "workspace:*",
+    "@agency/config": "workspace:*",
+    "@agency/database": "workspace:*",
+    "@agency/discovery": "workspace:*",
+    "@agency/intelligence": "workspace:*",
+    "@agency/scoring": "workspace:*",
+    "@agency/settings": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

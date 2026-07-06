@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /dash/
+Disallow: /ulndash/
+Disallow: /api/
+
+Sitemap: https://ulnovatech.store/sitemap.xml

@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>UlnovaTech - Official Website</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.ico" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <script src="assets/js/main.js"></script>
+
+</head>
+<style>
+.form-step { display: none; opacity: 0; transition: opacity 0.5s ease; }
+.form-step.active { display: block; opacity: 1; }
+button { margin-top: 10px; }
+</style>
+<style>
+    /* Modern Gamified Form Design System with Unique Prefixes */
+    :root {
+      --xai-gamified-form-background: #f7faff;
+      --xai-gamified-form-foreground: #1c2526;
+      --xai-gamified-form-card: #ffffff;
+      --xai-gamified-form-card-foreground: #1c2526;
+      --xai-gamified-form-primary: #6b46c1;
+      --xai-gamified-form-primary-foreground: #f7fafc;
+      --xai-gamified-form-primary-glow: #7c55d6;
+      --xai-gamified-form-secondary: #e5e7eb;
+      --xai-gamified-form-secondary-foreground: #1c2526;
+      --xai-gamified-form-muted: #e5e7eb;
+      --xai-gamified-form-muted-foreground: #6b7280;
+      --xai-gamified-form-accent: #e5e7eb;
+      --xai-gamified-form-accent-foreground: #1c2526;
+      --xai-gamified-form-success: #22c55e;
+      --xai-gamified-form-success-foreground: #f7fafc;
+      --xai-gamified-form-success-glow: #33d670;
+      --xai-gamified-form-warning: #facc15;
+      --xai-gamified-form-warning-foreground: #3f2a1d;
+      --xai-gamified-form-destructive: #ef4444;
+      --xai-gamified-form-destructive-foreground: #f7fafc;
+      --xai-gamified-form-border: #d1d5db;
+      --xai-gamified-form-input: #d1d5db;
+      --xai-gamified-form-ring: #6b46c1;
+      --xai-gamified-form-radius: 0.75rem;
+      --xai-gamified-form-celebration: #facc15;
+      --xai-gamified-form-celebration-secondary: #ec4899;
+      --xai-gamified-form-celebration-tertiary: #7c55d6;
+      --xai-gamified-form-progress-bg: #d1d5db;
+      --xai-gamified-form-progress-fill: #6b46c1;
+      --xai-gamified-form-gradient-primary: linear-gradient(135deg, #6b46c1, #7c55d6);
+      --xai-gamified-form-gradient-success: linear-gradient(135deg, #22c55e, #33d670);
+      --xai-gamified-form-gradient-celebration: linear-gradient(135deg, #facc15, #ec4899, #7c55d6);
+      --xai-gamified-form-gradient-bg: linear-gradient(135deg, #f7faff, #e5e7eb);
+      --xai-gamified-form-shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --xai-gamified-form-shadow-glow: 0 0 40px rgba(107, 70, 193, 0.3);
+      --xai-gamified-form-shadow-success: 0 0 40px rgba(34, 197, 94, 0.3);
+      --xai-gamified-form-transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --xai-gamified-form-transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .xai-gamified-form-body {
+      background: var(--xai-gamified-form-gradient-bg);
+      color: var(--xai-gamified-form-foreground);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .xai-gamified-form-main {
+      min-height: 100vh;
+      padding: 3rem 1rem;
+    }
+
+    .xai-gamified-form-container {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .xai-gamified-form-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .xai-gamified-form-h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      background: var(--xai-gamified-form-gradient-celebration);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .xai-gamified-form-header p {
+      font-size: 1.25rem;
+      color: var(--xai-gamified-form-muted-foreground);
+      max-width: 32rem;
+      margin: 0 auto;
+    }
+
+    .xai-gamified-form-card {
+      background: var(--xai-gamified-form-card);
+      border-radius: var(--xai-gamified-form-radius);
+      box-shadow: var(--xai-gamified-form-shadow-card);
+      max-width: 28rem;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .xai-gamified-form-card.xai-gamified-form-glow-effect {
+      box-shadow: var(--xai-gamified-form-shadow-glow);
+    }
+
+    .xai-gamified-form-card.xai-gamified-form-success-glow {
+      box-shadow: var(--xai-gamified-form-shadow-success);
+    }
+
+    .xai-gamified-form-card-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .xai-gamified-form-card-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .xai-gamified-form-card-title.xai-gamified-form-success {
+      font-size: 1.5rem;
+      color: var(--xai-gamified-form-success);
+    }
+
+    .xai-gamified-form-card-content {
+      padding: 1.5rem;
+    }
+
+    .xai-gamified-form-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .xai-gamified-form-badge.xai-gamified-form-secondary {
+      background: var(--xai-gamified-form-secondary);
+      color: var(--xai-gamified-form-secondary-foreground);
+    }
+
+    .xai-gamified-form-badge.xai-gamified-form-outline {
+      border: 1px solid var(--xai-gamified-form-border);
+      background: transparent;
+    }
+
+    .xai-gamified-form-badge.xai-gamified-form-celebration {
+      color: var(--xai-gamified-form-celebration);
+    }
+
+    .xai-gamified-form-progress-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .xai-gamified-form-form-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .xai-gamified-form-form-step-icon {
+      width: 4rem;
+      height: 4rem;
+      background: rgba(107, 70, 193, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(107, 70, 193, 0.2);
+      margin-bottom: 1.5rem;
+    }
+
+    .xai-gamified-form-form-step-icon svg {
+      width: 2rem;
+      height: 2rem;
+      stroke: var(--xai-gamified-form-primary);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .xai-gamified-form-input,
+    .xai-gamified-form-textarea,
+    .xai-gamified-form-select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--xai-gamified-form-input);
+      border-radius: var(--xai-gamified-form-radius);
+      font-size: 1rem;
+      color: var(--xai-gamified-form-foreground);
+      background: var(--xai-gamified-form-card);
+      transition: var(--xai-gamified-form-transition-smooth);
+    }
+
+    .xai-gamified-form-input:focus,
+    .xai-gamified-form-textarea:focus,
+    .xai-gamified-form-select:focus {
+      outline: none;
+      border-color: var(--xai-gamified-form-ring);
+      box-shadow: 0 0 0 3px rgba(107, 70, 193, 0.1);
+    }
+
+    .xai-gamified-form-textarea {
+      resize: none;
+      height: 6rem;
+    }
+
+    .xai-gamified-form-phone-input {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .xai-gamified-form-select {
+      width: 8rem;
+    }
+
+    .xai-gamified-form-button-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .xai-gamified-form-button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: var(--xai-gamified-form-radius);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--xai-gamified-form-transition-smooth);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-primary {
+      background: var(--xai-gamified-form-primary);
+      color: var(--xai-gamified-form-primary-foreground);
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-primary:hover {
+      background: color-mix(in srgb, var(--xai-gamified-form-primary), transparent 10%);
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-success {
+      background: var(--xai-gamified-form-success);
+      color: var(--xai-gamified-form-success-foreground);
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-success:hover {
+      background: color-mix(in srgb, var(--xai-gamified-form-success), transparent 10%);
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-outline {
+      background: transparent;
+      border: 1px solid var(--xai-gamified-form-border);
+      color: var(--xai-gamified-form-foreground);
+    }
+
+    .xai-gamified-form-button.xai-gamified-form-outline:hover {
+      background: var(--xai-gamified-form-secondary);
+    }
+
+    .xai-gamified-form-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .xai-gamified-form-spinner {
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid var(--xai-gamified-form-primary-foreground);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: xai-gamified-form-spin 1s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    .xai-gamified-form-progress-steps {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .xai-gamified-form-progress-step {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background: var(--xai-gamified-form-muted);
+      transition: var(--xai-gamified-form-transition-smooth);
+    }
+
+    .xai-gamified-form-progress-step.xai-gamified-form-active {
+      background: var(--xai-gamified-form-primary);
+      transform: scale(1.25);
+    }
+
+    .xai-gamified-form-progress-ring {
+      transform: rotate(-90deg);
+      transform-origin: center;
+    }
+
+    .xai-gamified-form-progress-ring text {
+      font-size: 0.75rem;
+      font-weight: 500;
+      fill: var(--xai-gamified-form-primary);
+    }
+
+    .xai-gamified-form-confetti-particle {
+      position: absolute;
+      pointer-events: none;
+      animation: xai-gamified-form-confetti-fall 3s ease-out forwards;
+    }
+
+    .xai-gamified-form-form-step-enter {
+      animation: xai-gamified-form-slideInFromRight 0.5s ease-out forwards;
+    }
+
+    .xai-gamified-form-form-step-exit {
+      animation: xai-gamified-form-slideOutToLeft 0.5s ease-out forwards;
+    }
+
+    .xai-gamified-form-celebration-bounce {
+      animation: xai-gamified-form-celebrationBounce 0.6s ease-out;
+    }
+
+    .xai-gamified-form-toast {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--xai-gamified-form-card);
+      border: 1px solid var(--xai-gamified-form-border);
+      border-radius: var(--xai-gamified-form-radius);
+      padding: 1rem;
+      box-shadow: var(--xai-gamified-form-shadow-card);
+      max-width: 20rem;
+      z-index: 1000;
+      animation: xai-gamified-form-slideInFromRight 0.3s ease-out;
+    }
+
+    .xai-gamified-form-toast.xai-gamified-form-destructive {
+      background: var(--xai-gamified-form-destructive);
+      color: var(--xai-gamified-form-destructive-foreground);
+      border-color: transparent;
+    }
+
+    .xai-gamified-form-toast.xai-gamified-form-success {
+      background: var(--xai-gamified-form-success);
+      color: var(--xai-gamified-form-success-foreground);
+      border-color: transparent;
+    }
+
+    .xai-gamified-form-toast-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .xai-gamified-form-toast-description {
+      font-size: 0.875rem;
+    }
+
+    @keyframes xai-gamified-form-slideInFromRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes xai-gamified-form-slideOutToLeft {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes xai-gamified-form-confetti-fall {
+      0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes xai-gamified-form-celebrationBounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      40% {
+        transform: translateY(-20px) scale(1.1);
+      }
+      60% {
+        transform: translateY(-10px) scale(1.05);
+      }
+    }
+
+    @keyframes xai-gamified-form-spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+
+
+<body class="index-page">
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1 class="sitename">UlnovaTech</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home</a></li>
+    
+          <li class="dropdown"><a href="#"><span>Services</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#webdesign">Website development</a></li>
+              <li><a href="#appdev">Mobile app development</a></li>
+              <li><a href="#">IT consulting</a></li>
+              <li><a href="#">Remote tech support</a></li>
+              <li><a href="#marketing">Digital marketing & SEO</a></li>
+              <li><a href="#">UI/UX design</a></li>
+              <li><a href="#">Network setup</a></li>  
+            </ul>      
+          </li>
+
+          <li><a href="portfolio/frontend/index.html">Portfolio</a></li>
+          <li class="dropdown"><a href="#"><span>All Products</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#webdev">Websites</a></li>
+              <li class="dropdown"><a href="#appdev"><span>Apps</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">E-Commerce</a></li>
+                  <li><a href="#">Delivery Apps</a></li>
+                  <li><a href="#">Restaurant Apps</a></li>
+                  <li><a href="#">Chat Apps</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#"><span>Management Systems</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Buisness Mgt Systems</a></li>
+                  <li><a href="#">Store Management</a></li>
+                  <li><a href="#">Professional Dashboards</a></li>
+                  <li><a href="#">Data Processing</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a href="#graphics"><span>Graphics Design</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Animation Videos</a></li>
+                  <li><a href="#">Logos</a></li>
+                  <li><a href="#">Product Designs</a></li>
+                  <li><a href="#">Branding</a></li>
+                  <li><a href="#">Banners, Flyers, Posters</a></li>
+                  <li><a href="#">Wedding Invitations</a></li>
+                  <li><a href="#">Invitation Cards</a></li>            
+                </ul>
+              </li>
+               <li class="dropdown"><a href="#"><span>Advertisements</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Video Ads</a></li>
+                  <li><a href="#">Social Media Ads</a></li>
+                  <li><a href="#">Product Ads</a></li>
+                  <li><a href="#">Buisness Ads</a></li>
+                  <li><a href="#">Public Announcements</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+                    <li><a href="about.html">About</a></li>
+
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="cta-btn" href="portfolio/">Get Started</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="assets/img/ulnova3.jpg" alt="" data-aos="fade-in">
+
+      <div class="container d-flex flex-column align-items-center">
+        <h2 data-aos="fade-up" data-aos-delay="100">
+          <span id="animated-sentence"></span>
+        </h2>
+
+        <p class="description" data-aos="fade-up" data-aos-delay="200">
+          Creative tech experts crafting custom digital solutions that fit your needs.
+          <span id="more-text" style="display: none;">
+            We’re a team of skilled tech artisans and designers dedicated to making and delivering apps, websites, graphics, animations, and more.<br><br>
+            — built to work your way, tailored to every client’s vision and needs. Our team ensures that every project combines creativity, usability, and technology to deliver outstanding results.
+          </span>
+  
+          <a href="#" id="read-more" style="color: #ff4a17; text-decoration: none;"> Read More</a>
+          </p>
+
+        <!-- <p class="description" data-aos="fade-up" data-aos-delay="200">
+  We’re a team of skilled tech artisans and designers dedicated to making and delivering satisfactory apps, websites, graphics, animations, and more — built to work your way.
+</p> -->
+
+        <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
+          <a href="portfolio/" class="btn-get-started">Get Started</a>
+          <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
+        </div>
+      </div>
+    </section><!-- /Hero Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>Featured Services<br></p>
+      </div><!-- End Section Title -->
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5">
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-activity"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>Custom Software Development</h3>
+                </a>
+                <p>We build powerful backend systems, automation tools, and business platforms to perfectly fit your workflow.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services-2.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>Web & Mobile App Development</h3>
+                </a>
+                <p>From sleek websites to scalable mobile apps — we design, develop, and deploy full-stack digital solutions.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-xl-4 col-md-6" data-aos="zoom-in" data-aos-delay="400">
+            <div class="service-item">
+              <div class="img">
+                <img src="assets/img/services.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="details position-relative">
+                <div class="icon">
+                  <i class="bi bi-easel"></i>
+                </div>
+                <a href="service-details.html" class="stretched-link">
+                  <h3>IT Services & Technical Support</h3>
+                </a>
+                <p>Infrastructure setup, Network Installations, tech consulting, and reliable support to keep your systems running smoothly.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+        </div>
+      </div>
+    </section><!-- /Services Section -->
+
+    <!-- Services 2 Section -->
+    <section id="services-2" class="services-2 section light-background">
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Services</h2>
+        <p>CHECK OUT OUR SERVICES</p>
+      </div><!-- End Section Title -->
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-briefcase icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">UI/UX Design</a></h4>
+                <p class="description">We craft clean, intuitive interfaces that look great and feel natural for your users.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-card-checklist icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">API Integration</a></h4>
+                <p class="description">Seamlessly connect your app or website with payment systems like MTN MOMO, Airtel Money, Banks, CRMs, or external services.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-bar-chart icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">E-commerce Solutions</a></h4>
+                <p class="description">Launch a secure online store with full inventory, payment, and customer features.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-binoculars icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Digital Marketing</a></h4>
+                <p class="description">We help you reach the right audience through smart SEO, social media, content, and online ad strategies — built to grow your brand and sales.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-brightness-high icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Maintenance & Support</a></h4>
+                <p class="description">Ongoing updates, bug fixes, and tech help to keep your product running smoothly.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item d-flex position-relative h-100">
+              <i class="bi bi-calendar4-week icon flex-shrink-0"></i>
+              <div>
+                <h4 class="title"><a href="#" class="stretched-link">Tech Consulting</a></h4>
+                <p class="description">Get expert advice on the right tools, platforms, or strategy for your project.</p>
+              </div>
+            </div>
+          </div><!-- End Service Item -->
+        </div>
+      </div>
+    </section><!-- /Services 2 Section -->
+
+    <!-- Why Choose us Section --> 
+    <section class="why-section">
+    <div class="container">
+      <h2>Why Choose Us</h2>
+      <p class="lead">We’re here to make things easier for you. Our services are built around your needs, so you can get started without stress.</p>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-primary text-white"><i class="fas fa-users"></i></div>
+            <h5>Expert &amp; Professional Team</h5>
+            <p>We’re a team of skilled people who love what we do. You can count on us to handle your project with care and creativity.</p>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-info"><i class="fas fa-clock"></i></div>
+            <h5>Quick Delivery</h5>
+            <p>We work fast without cutting corners. Your order gets to you on time so you don’t have to wait around.</p>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-success"><i class="fas fa-coins"></i></div>
+            <h5>Affordable Price</h5>
+            <p>Good quality doesn’t always mean expensive. We keep our prices fair so you get real value for your money.</p>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-md-6 col-lg-6">
+          <div class="why-card">
+            <div class="why-icon text-warning"><i class="fas fa-award"></i></div>
+            <h5>Satisfaction Guarantee</h5>
+            <p>We want you to be happy with our work. If something isn’t right, we’ll fix it until you’re satisfied.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Contact</h2>
+    <p style="text-transform: none;">Let's talk about your project.</p>
+  </div><!-- End Section Title -->
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4">
+      <div class="col-lg-6">
+        <div class="row gy-4">
+  <div class="col-6 col-lg-12">
+    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+      <i class="bi bi-geo-alt"></i>
+      <h3><b>Address</b></h3>
+      <p>Kampala, Uganda</p>
+    </div>
+  </div><!-- End Info Item -->
+
+  <div class="col-6 col-md-6">
+    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+      <i class="bi bi-envelope"></i>
+      <h3><b>Email Us</b></h3>
+      <p>ulnovatech@gmail.com</p>
+    </div>
+  </div><!-- End Info Item -->
+
+  <div class="col-12 col-md-6">
+    <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+      <i class="bi bi-telephone"></i>
+      <h3><b>Lets Talk</b></h3>
+      <div class="d-flex flex-row">
+        <a href="tel:+256791779448" class="me-3">+256 791779448</a>
+        <a href="tel:+256749594464" class="me-3">+256 749594464</a>
+      </div>
+    </div>
+  </div><!-- End Info Item -->
+</div>
+      </div>
+
+
+
+<section class="portfolio-section" role="region" aria-label="Portfolio banner section">
+  <div class="portfolio-section-banner">
+    <div class="portfolio-section-stars-container">
+      <div class="portfolio-section-stars" id="portfolio-section-stars"></div>
+    </div>
+    <div class="portfolio-section-content">
+      <div class="portfolio-section-left">
+        <h1 class="portfolio-section-title">Check Out Our Portfolio</h1>
+        <p class="portfolio-section-description">Beautiful proof of work</p>
+        <a href="portfolio.html" class="portfolio-section-button">View Past Projects</a>
+      </div>
+      <img class="portfolio-section-laptop" src="assets/img/laptop-trs.png" alt="Open Laptop">
+    </div>
+  </div>
+
+  <style>
+    .portfolio-section {
+      position: relative;
+      width: 100%;
+  /*    max-width: 1200px;
+      min-height: 400px;*/
+      margin: 48px auto;
+      overflow: hidden;
+      background: #000;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .portfolio-section-banner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .portfolio-section-stars-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .portfolio-section-stars {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      transform-origin: center;
+      animation: portfolio-section-rotate 120s linear infinite;
+    }
+
+    .portfolio-section-star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: portfolio-section-twinkle 5s infinite ease-in-out;
+    }
+
+    @keyframes portfolio-section-rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes portfolio-section-twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .portfolio-section-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      padding: 40px;
+      color: #fff;
+    }
+
+    .portfolio-section-left {
+      max-width: 50%;
+    }
+
+    .portfolio-section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      margin: 0;
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bf178, #4cc9f0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+    }
+
+    .portfolio-section-description {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      margin: 10px 0 20px;
+      color: #ddd;
+    }
+
+    .portfolio-section-button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-section-button:hover {
+      transform: scale(1.05);
+    }
+
+    .portfolio-section-laptop {
+      height: 80%;
+      max-width: 400px;
+      object-fit: contain;
+      align-self: center;
+    }
+
+    @media (max-width: 980px) {
+      .portfolio-section {
+        margin: 24px auto;
+      }
+
+      .portfolio-section-content {
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .portfolio-section-left {
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .portfolio-section-title {
+        font-size: 36px;
+      }
+
+      .portfolio-section-description {
+        font-size: 20px;
+      }
+
+      .portfolio-section-laptop {
+        height: auto;
+        width: 300px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .portfolio-section-stars {
+        animation: none;
+      }
+      .portfolio-section-button {
+        transition: none;
+      }
+    }
+  </style>
+
+  <script>
+    (function() {
+      const portfolioSectionStarsElement = document.getElementById('portfolio-section-stars');
+      const portfolioSectionNumStars = 200;
+
+      for (let i = 0; i < portfolioSectionNumStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'portfolio-section-star';
+        const size = Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        star.style.opacity = Math.random() * 0.5 + 0.5;
+        portfolioSectionStarsElement.appendChild(star);
+      }
+    })();
+  </script>
+</section>
+
+
+
+
+
+
+
+
+ <main class="xai-gamified-form-main">
+    <div class="xai-gamified-form-container">
+      <header class="xai-gamified-form-header">
+        <h1 class="xai-gamified-form-h1">Get In Touch</h1>
+        <p>Ready to start your journey? Fill out our gamified form and earn points along the way! 🚀</p>
+      </header>
+      <div id="xai-gamified-form-container"></div>
+    </div>
+  </main>
+      
+    </div>
+  </div>
+</section><!-- /Contact Section -->
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">
+              <img src="assets/img/uln-logo.png">
+            </span>            
+          </a>
+         <p class="pt-3" style="color: ">Website, App & System development • IT services</p>
+          <div class="footer-contact pt-3">
+            <p>Kampala, Uganda</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+256 772169960</span></p>
+            <p><strong>Email:</strong> <span>ulnovatech@gmail.com</span></p>
+            <p>“Address coming soon. Office under development”</p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="https://x.com/ulnova26716"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.instagram.com/ulnovatech/?hl=en"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/ulnova-tech-394547376/"><i class="bi bi-linkedin"></i></a>
+            <a href="https://www.youtube.com/@UlnovaTech"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Our Newsletter</h4>
+          <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
+          <form action="php/newsletter.php" method="post" id="newsletterForm">
+            <div class="newsletter-form">
+              <input type="email" name="email" required placeholder="Enter your email">
+              <input type="submit" value="Subscribe">
+            </div>
+            <div class="loading" style="display:none;">Loading...</div>
+            <div class="error-message" style="display:none; color:red;"></div>
+            <div class="sent-message" style="display:none; color:green;"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© 2025<span> Copyright</span> <strong class="px-1 sitename">UlnovaTech</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://ulnovatech.com/">UlnovaTech</a>
+      </div>
+    </div>
+  </footer>
+<div class="floating-icons">
+        <a href="https://wa.me/0749594464" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:+256791779448" class="phone"><i class="fas fa-phone"></i></a>
+    </div>
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+  
+
+
+
+  <!-- Vendor JS Files -->
+  <!-- Main JS File and Modal Scripts -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/js/main.js"></script>
+
+<script>
+  // Function to handle modal open/close
+  function setupModal(openBtnId, modalId, closeBtnId) {
+    const openBtn = document.getElementById(openBtnId);
+    const modal = document.getElementById(modalId);
+    const closeBtn = document.getElementById(closeBtnId);
+
+    openBtn.onclick = () => modal.style.display = "flex";
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  }
+
+  // Function to handle form submission
+  function setupForm(formId, msgBoxId, actionUrl) {
+    const form = document.getElementById(formId);
+    const msgBox = document.getElementById(msgBoxId);
+    const countrySelect = form.querySelector('select[name="country"]');
+    const countryCodeSpan = form.querySelector('.input-group-text');
+    const phoneInput = form.querySelector('input[name="phone"]');
+
+    // Update country code prefix
+    countrySelect.addEventListener('change', () => {
+      countryCodeSpan.textContent = countrySelect.value;
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msgBox.style.display = 'none';
+
+      const formData = new FormData(form);
+      formData.set('phone', countrySelect.value + phoneInput.value);
+
+      try {
+        const res = await fetch(actionUrl, {
+          method: 'POST',
+          body: formData
+        });
+        const response = await res.json();
+        msgBox.style.display = 'block';
+        if (response.status === 'success') {
+          msgBox.className = 'alert alert-success';
+          msgBox.innerText = '✅ Request sent successfully!';
+          form.reset();
+          countryCodeSpan.textContent = countrySelect.value; // Reset country code
+        } else {
+          msgBox.className = 'alert alert-danger';
+          msgBox.innerText = '❌ Failed to send. Please try again.';
+        }
+      } catch (error) {
+        msgBox.style.display = 'block';
+        msgBox.className = 'alert alert-danger';
+        msgBox.innerText = '❌ Server error. Try again later.';
+      }
+    });
+  }
+
+  // Setup modals
+  setupModal('openWebFormBtn', 'webDevModal', 'closeWebModal');
+  setupModal('openAppFormBtn', 'appDevModal', 'closeAppModal');
+  setupModal('openGraphicsFormBtn', 'graphicsDevModal', 'closeGraphicsModal');
+  setupModal('openMarketingFormBtn', 'marketingDevModal', 'closeMarketingModal');
+
+  // Setup form submissions
+  setupForm('webDevForm', 'webDevMsg', 'php/webdesigninq.php');
+  setupForm('appDevForm', 'appDevMsg', 'php/appdevrequests.php');
+  setupForm('graphicsDevForm', 'graphicsDevMsg', 'php/graphdesrequests.php');
+  setupForm('marketingDevForm', 'marketingDevMsg', 'php/marketingrequests.php');
+</script>
+
+<!-- Newsletter Form Script -->
+<script>
+  const newsletterForm = document.getElementById('newsletterForm');
+  const loading = newsletterForm.querySelector('.loading');
+  const errorMsg = newsletterForm.querySelector('.error-message');
+  const sentMsg = newsletterForm.querySelector('.sent-message');
+
+  newsletterForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    loading.style.display = 'block';
+    errorMsg.style.display = 'none';
+    sentMsg.style.display = 'none';
+
+    const formData = new FormData(newsletterForm);
+    try {
+      const response = await fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData
+      });
+      const result = await response.json();
+      loading.style.display = 'none';
+
+      if (response.ok && result.status === 'success') {
+        sentMsg.textContent = result.message;
+        sentMsg.style.display = 'block';
+        newsletterForm.reset();
+      } else {
+        errorMsg.textContent = result.message || 'An error occurred. Please try again.';
+        errorMsg.style.display = 'block';
+      }
+    } catch (error) {
+      loading.style.display = 'none';
+      errorMsg.textContent = 'An error occurred. Please try again.';
+      errorMsg.style.display = 'block';
+    }
+  });
+</script>
+
+
+<!-- Typed -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const greenColor = "green";
+  const accentColor = "#ff4a17";
+
+  const swapWords = ["APPS", "WEBSITES", "GRAPHICS", "SOFTWARE"];
+  const phase1Text = ["BUILDING ", "TECH", "\nTHAT WORK — YOUR WAY."]; // split for coloring
+
+  const sentenceEl = document.getElementById("animated-sentence");
+
+  // Phase 1: type full sentence letter by letter
+  function typePhase1(callback) {
+    sentenceEl.innerHTML = ""; // clear
+    let partIndex = 0;
+    let charIndex = 0;
+
+    function typeChar() {
+      if(partIndex >= phase1Text.length) {
+        setTimeout(callback, 1000); // wait 1s after full sentence
+        return;
+      }
+
+      let part = phase1Text[partIndex];
+      let isWord = (partIndex === 1); // "TECH" part
+
+      if(isWord){
+        if(!sentenceEl.querySelector("span")) {
+          const span = document.createElement("span");
+          span.style.color = greenColor;
+          sentenceEl.appendChild(span);
+        }
+        const span = sentenceEl.querySelector("span");
+        span.textContent += part[charIndex];
+      } else {
+        sentenceEl.innerHTML += part[charIndex] === "\n" ? "<br>" : part[charIndex];
+      }
+
+      charIndex++;
+      if(charIndex >= part.length){
+        partIndex++;
+        charIndex = 0;
+      }
+
+      setTimeout(typeChar, 60);
+    }
+
+    typeChar();
+  }
+
+  // Phase 2: swap words only
+  function animateSwaps(index = 0, callback) {
+    if(index >= swapWords.length){
+      if(callback) callback();
+      return;
+    }
+
+    const wordSpan = sentenceEl.querySelector("span");
+    wordSpan.style.color = accentColor;
+    const word = swapWords[index];
+    let j = 0;
+    wordSpan.textContent = "";
+
+    function typeLetter() {
+      if(j < word.length){
+        wordSpan.textContent += word[j];
+        j++;
+        setTimeout(typeLetter, 100);
+      } else {
+        setTimeout(deleteWord, 1500);
+      }
+    }
+
+    function deleteWord() {
+      if(j > 0){
+        wordSpan.textContent = wordSpan.textContent.slice(0, -1);
+        j--;
+        setTimeout(deleteWord, 50);
+      } else {
+        animateSwaps(index + 1, callback);
+      }
+    }
+
+    typeLetter();
+  }
+
+  // Full loop: Phase1 → Phase2 → repeat
+  function loop() {
+    typePhase1(() => {
+      animateSwaps(0, () => {
+        loop();
+      });
+    });
+  }
+
+  loop();
+
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const readMoreLink = document.getElementById("read-more");
+  const moreText = document.getElementById("more-text");
+
+  readMoreLink.addEventListener("click", function(e) {
+    e.preventDefault(); // stop the link from jumping
+    if(moreText.style.display === "none"){
+      moreText.style.display = "inline"; // show the hidden content
+      this.textContent = " Read Less";   // change link text
+    } else {
+      moreText.style.display = "none";   // hide the content
+      this.textContent = " Read More";   // revert link text
+    }
+  });
+});
+</script>
+<script>
+const steps = document.querySelectorAll(".form-step");
+const nextBtns = document.querySelectorAll(".next-btn");
+const progressBar = document.getElementById("progress-bar");
+let currentStep = 0;
+
+function updateProgress() {
+  progressBar.style.width = ((currentStep+1)/steps.length*100) + "%";
+}
+
+nextBtns.forEach((btn, index) => {
+  btn.addEventListener("click", () => {
+    const inputs = steps[index].querySelectorAll("input, textarea");
+    let valid = true;
+    inputs.forEach(input => {
+      if(input.hasAttribute("required") && !input.value.trim()){
+        valid = false;
+        input.style.border = "2px solid red";
+      } else {
+        input.style.border = "";
+      }
+    });
+    if(!valid) return;
+
+    steps[index].classList.remove("active");
+    currentStep++;
+    if(steps[currentStep]) {
+      steps[currentStep].classList.add("active");
+      updateProgress();
+    }
+  });
+});
+
+// Optional: Add confetti when form is submitted
+document.getElementById("gamifiedForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  document.querySelector(".loading").style.display = "block";
+
+  setTimeout(() => {
+    document.querySelector(".loading").style.display = "none";
+    document.querySelector(".sent-message").style.display = "block";
+
+    // Simple confetti effect
+    const confetti = document.createElement("div");
+    confetti.innerHTML = "🎉🎊✨";
+    confetti.style.position = "absolute";
+    confetti.style.top = "50px";
+    confetti.style.left = "50%";
+    confetti.style.fontSize = "2rem";
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(), 2000);
+
+    this.reset();
+    steps.forEach((step, i) => step.classList.remove("active"));
+    currentStep = 0;
+    steps[0].classList.add("active");
+    updateProgress();
+    progressBar.style.width = "0%";
+  }, 1000);
+});
+</script>
+  <script src="assets/js/contact-form.js"></script>
+
+
+
+</body>
+</html>

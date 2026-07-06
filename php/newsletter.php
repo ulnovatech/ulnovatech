@@ -4,6 +4,10 @@ header('Content-Type: application/json; charset=UTF-8');
 
 // Load database config
 require_once(__DIR__ . '/config.php');
+require_once(__DIR__ . '/leads/notify.php');
+require_once(__DIR__ . '/leads/rate_limit.php');
+
+uln_rate_limit('newsletter');
 
 // Connect to database
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
@@ -39,8 +43,13 @@ $query = "INSERT INTO newsletter (email)
 $insert = mysqli_query($con, $query);
 
 if ($insert) {
+    $sourceId = (int) mysqli_insert_id($con);
+    uln_notify_lead('newsletter', [
+        'source_id' => $sourceId,
+        'email' => $email,
+    ]);
     http_response_code(200);
-    echo json_encode(['status' => 'success', 'message' => "Thanks so much for reaching out! We’ve received your message and will be in touch very soon."]);
+    echo json_encode(['status' => 'success', 'message' => "Thanks for subscribing! We'll keep you updated."]);
 } else {
     http_response_code(500);
     echo json_encode(['status' => 'error', 'message' => 'Something went wrong. Please try again later.']);

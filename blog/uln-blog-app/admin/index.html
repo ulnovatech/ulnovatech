@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ULN CMS</title>
+
+    <!-- Decap CMS styles -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.css"
+    />
+  </head>
+
+  <body>
+    <div id="nc-root"></div>
+
+    <!-- Netlify Identity Widget -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Decap CMS -->
+    <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // Initialize Decap CMS
+      window.CMS.init({ config: "/config.yml" });
+
+      // Netlify Identity: Automatically open CMS if already logged in
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", (user) => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

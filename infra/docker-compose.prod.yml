@@ -1,0 +1,23 @@
+# Production overrides — use with:
+# docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
+
+services:
+  mysql:
+    restart: always
+
+  php-fpm:
+    restart: always
+
+  nginx:
+    restart: always
+    ports:
+      - '80:80'
+
+  postgres:
+    restart: always
+
+  discovery-web:
+    restart: always
+
+  discovery-worker:
+    restart: always

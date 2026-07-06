@@ -1,0 +1,25 @@
+{
+  "name": "@agency/settings",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./operating-kpis": "./src/operating-kpis.ts"
+  },
+  "scripts": {
+    "db:seed": "tsx src/seed.ts",
+    "test": "tsx src/__tests__/settings.test.ts && tsx src/__tests__/locale-packs.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@agency/database": "workspace:*",
+    "@agency/geo": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

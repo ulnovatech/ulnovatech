@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ulnovatech-system": "file:.."
+  }
+}

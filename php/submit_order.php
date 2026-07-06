@@ -27,7 +27,7 @@ if (empty($name) || empty($phone)) {
 
 // Prepare and bind
 $stmt = $conn->prepare("INSERT INTO website_orders (template, name, phone, business, details) VALUES (?, ?, ?, ?, ?)");
-$stmt->bind_param("ssiss", $template, $name, $phone, $business, $details);
+$stmt->bind_param("sssss", $template, $name, $phone, $business, $details);
 
 // Execute the statement
 if ($stmt->execute()) {

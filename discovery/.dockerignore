@@ -1,0 +1,12 @@
+node_modules
+.turbo
+**/.next
+**/dist
+storage/uploads
+.env
+.env.*
+!.env.example
+.git
+.github
+*.md
+**/__tests__

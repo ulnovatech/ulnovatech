@@ -1,0 +1,12 @@
+node_modules/
+dist/
+android/**
+!android/keystore.properties.example
+android/keystore.properties
+ios/
+.DS_Store
+*.local
+android/app/google-services.json
+keystore/
+*.keystore
+*.jks

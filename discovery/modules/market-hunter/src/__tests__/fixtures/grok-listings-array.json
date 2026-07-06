@@ -1,0 +1,26 @@
+[
+  {
+    "title": "React Native Starter Kit",
+    "price": 49,
+    "salesCount": 1200,
+    "lastUpdated": "2025-11-15",
+    "publishedDate": "2022-03-01",
+    "tags": ["react-native", "mobile", "starter"],
+    "reviewCount": 84,
+    "averageRating": 4.6,
+    "url": "https://codecanyon.net/item/react-native-starter-kit/12345678",
+    "sellerName": "MobileDev Studio"
+  },
+  {
+    "title": "Flutter Ecommerce UI",
+    "price": 39,
+    "salesCount": 890,
+    "lastUpdated": "2025-08-20",
+    "publishedDate": "2021-06-12",
+    "tags": ["flutter", "ecommerce"],
+    "reviewCount": 52,
+    "averageRating": 4.4,
+    "url": "https://codecanyon.net/item/flutter-ecommerce-ui/87654321",
+    "sellerName": "Flutter Labs"
+  }
+]

@@ -1,0 +1,3 @@
+// Clerk auth is merged into middleware.ts (Chunk C14).
+// Production: set CLERK_SECRET_KEY + NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, ALLOW_DEV_AUTH=false.
+// Local dev: ALLOW_DEV_AUTH=true and X-Dev-User header on POST/PATCH/DELETE API calls.

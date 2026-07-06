@@ -1,0 +1,19 @@
+{
+  "appId": "store.ulnovatech.admin",
+  "appName": "Ulnova Admin",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#000910"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "backgroundColor": "#000910",
+      "launchShowDuration": 1200,
+      "androidSplashResourceName": "splash"
+    }
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

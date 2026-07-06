@@ -1,0 +1,19 @@
+{
+  "name": "website-screenshotter",
+  "version": "1.0.0",
+  "description": "A Node.js program to load a website and take screenshots of its main linked pages",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.11.0"
+  },
+  "keywords": [
+    "screenshot",
+    "website",
+    "puppeteer"
+  ],
+  "author": "",
+  "license": "ISC"
+}

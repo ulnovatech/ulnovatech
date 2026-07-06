@@ -1,0 +1,19 @@
+{
+  "topComplaints": [
+    {
+      "complaint": "App crashes on Android 14",
+      "frequency": 6,
+      "isTechnical": true,
+      "fixDifficulty": "MEDIUM"
+    },
+    {
+      "complaint": "Poor documentation",
+      "frequency": 4,
+      "isTechnical": true,
+      "fixDifficulty": "LOW"
+    }
+  ],
+  "buildableFixes": ["Fix Android 14 crash", "Rewrite setup docs"],
+  "estimatedFixTimeDays": 10,
+  "confidenceScore": 78
+}

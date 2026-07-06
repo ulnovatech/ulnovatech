@@ -1,0 +1,28 @@
+Folder PATH listing
+Volume serial number is BA4C-A794
+C:.
+|   about.html
+|   index.html
+|   portfolio-details.html
+|   
+\---portfolio
+    |   cta.html
+    |   index.html
+    |   order.html
+    |   rainbow.html
+    |   robustOlderCode.html
+    |   
+    +---arona-template.webflow.io
+    |   
+    +---bildium.webflow.io
+   
+    +---crave
+    
+    +---mentara.webflow.io
+    
+    +---rosoi.webflow.io
+      
+    +---willey-fragrance.webflow.io
+    
+    \---zeki-template.webflow.io
+    

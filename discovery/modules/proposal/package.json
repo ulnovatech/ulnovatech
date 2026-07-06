@@ -1,0 +1,20 @@
+{
+  "name": "@agency/proposal",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "dependencies": {
+    "@agency/crm": "workspace:*",
+    "@agency/database": "workspace:*",
+    "@agency/types": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "scripts": {
+    "test": "tsx src/__tests__/rules.test.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

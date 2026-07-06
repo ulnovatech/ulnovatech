@@ -1,0 +1,19 @@
+{
+  "name": "@agency/accounts",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "tsx src/__tests__/phone.test.ts && tsx src/__tests__/domain.test.ts && tsx src/__tests__/name-similarity.test.ts && tsx src/__tests__/suppression.test.ts && tsx src/__tests__/merge.test.ts && tsx src/__tests__/accounts.test.ts"
+  },
+  "dependencies": {
+    "@agency/database": "workspace:*",
+    "@agency/settings": "workspace:*",
+    "drizzle-orm": "^0.38.3"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

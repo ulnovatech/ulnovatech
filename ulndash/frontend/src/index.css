@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* base dark background & typography */
+:root{
+  color-scheme: dark;
+}
+html, body, #root {
+  height: 100%;
+}
+body {
+  @apply bg-bg-900 text-gray-100 font-sans;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* subtle card */
+.card {
+  @apply bg-card rounded-xl2 p-4 shadow-neon-sm border border-gray-800;
+}
+
+/* small neon glow utility */
+.neon {
+  box-shadow: 0 6px 24px rgba(139,92,246,0.08);
+}
+
+/* KPI value styling */
+.kpi-value {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* reduce table density */
+.table-compact td, .table-compact th {
+  padding: 0.5rem 0.75rem;
+}
+
+/* chart container */
+.chart-wrap {
+  @apply bg-gradient-to-b from-transparent to-transparent rounded-xl2 p-4;
+}
+
+/* text muted */
+.text-muted {
+  color: #9aa0a6;
+}

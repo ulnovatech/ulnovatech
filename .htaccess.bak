@@ -1,0 +1,4 @@
+RewriteEngine On
+
+# Proxy API requests to ulndash backend
+RewriteRule ^api/(.*)$ ulndash/backend/$1 [L]

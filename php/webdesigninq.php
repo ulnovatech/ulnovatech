@@ -4,6 +4,10 @@ header('Content-Type: application/json; charset=UTF-8');
 
 // Load database config
 require_once(__DIR__ . '/config.php');
+require_once(__DIR__ . '/leads/notify.php');
+require_once(__DIR__ . '/leads/rate_limit.php');
+
+uln_rate_limit('webdesigninq');
 
 // Connect to database
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name, $db_port);
@@ -25,6 +29,13 @@ $query = "INSERT INTO webdesigninq (name, phone, description)
 $insert = mysqli_query($con, $query);
 
 if ($insert) {
+    $sourceId = (int) mysqli_insert_id($con);
+    uln_notify_lead('webdesign', [
+        'source_id' => $sourceId,
+        'name' => $name,
+        'phone' => $phone,
+        'description' => $description,
+    ]);
     http_response_code(200);
     echo json_encode(['status' => 'success', 'message' => "$name, your message has been sent. Thank you!"]);
 } else {

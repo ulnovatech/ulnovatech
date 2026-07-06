@@ -1,0 +1,68 @@
+Folder PATH listing
+Volume serial number is BA4C-A794
+C:.
+
++---backend
+|   |   .env
+|   |   api.php
+|   |   bootstrap.php
+|   |   composer.json
+|   |   composer.lock
+|   |   db.php
+|   |   php
+|   |   router.php
+|   |   service-account.json
+|   |   xCompanyController.php
+|   |   
+|   +---api
+|   |       ga.php
+|   |       test-ga.php
+|   |       
+|   +---controllers
+|   |       CompanyController.php
+|   |       ImportController.php
+|   |       InteractionController.php
+|   |       RequestsController.php
+|   |       
+|   +---public
+|   |       .htaccess
+|   |       index.php
+|   |       xindex.php
+    |       
++---frontend
+|   |   .env
+|   |   .gitignore
+|   |   eslint.config.js
+|   |   index.html
+|   |   package-lock.json
+|   |   package.json
+|   |   postcss.config.cjs
+|   |   README.md
+|   |   tailwind.config.js
+|   |   vite.config.js
+|   | 
+    \---src
+        |   App.jsx
+        |   index.css
+        |   main.jsx
+        |   
+        +---assets
+        |       react.svg
+        |       
+        +---components
+        |       CompanyForm.jsx
+        |       CompanyTable.jsx
+        |       Filters.jsx
+        |       InteractionForm.jsx
+        |       StatusBadge.jsx
+        |       
+        +---pages
+        |       Analytics.jsx
+        |       CompanyDetail.jsx
+        |       CompanyList.jsx
+        |       Home.jsx
+        |       ImportCSV.jsx
+        |       
+        \---services
+                api.js
+                

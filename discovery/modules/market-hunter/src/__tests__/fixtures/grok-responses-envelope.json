@@ -1,0 +1,16 @@
+{
+  "id": "resp_test_001",
+  "model": "grok-3",
+  "output": [
+    {
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "output_text",
+          "text": "```json\n[{\"title\":\"React Native Starter Kit\",\"price\":49,\"salesCount\":1200,\"lastUpdated\":\"2025-11-15\",\"publishedDate\":\"2022-03-01\",\"tags\":[\"react-native\"],\"reviewCount\":84,\"averageRating\":4.6,\"url\":\"https://codecanyon.net/item/react-native-starter-kit/12345678\",\"sellerName\":\"MobileDev Studio\"}]\n```"
+        }
+      ]
+    }
+  ]
+}

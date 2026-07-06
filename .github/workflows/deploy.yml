@@ -1,29 +1,144 @@
-name: Deploy PHP Project to InfinityFree
+name: Deploy to Oracle
 
-# Trigger deployment on push to main branch
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: oracle-production
+  cancel-in-progress: false
 
 jobs:
   deploy:
+    name: Build and deploy to OCI VM
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
-      # 1️⃣ Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      # 2️⃣ Deploy to InfinityFree via FTP
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      - uses: actions/setup-node@v4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          port: ${{ secrets.FTP_PORT }}           # optional, defaults to 21
-          local-dir: ./               # deploy contents of project folder
-          server-dir: /htdocs/
+          node-version: 22
+          cache: npm
 
-          #server-dir: ${{ secrets.FTP_DIR }}      #should be /htdocs/ and must end with /
+      - name: Install PHP + Composer
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y composer php-cli php-mysql php-mbstring php-xml php-zip
+
+      - name: Build public_html
+        run: |
+          npm ci
+          npm run build:linux
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: discovery/pnpm-lock.yaml
+
+      - name: Verify Discovery Docker build context
+        working-directory: discovery
+        env:
+          DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
+          NEXT_PUBLIC_APP_URL: https://discovery.ulnovatech.store
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm build
+
+      - name: Configure SSH
+        env:
+          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
+          OCI_SSH_PRIVATE_KEY: ${{ secrets.OCI_SSH_PRIVATE_KEY }}
+        run: |
+          test -n "$OCI_SSH_HOST"
+          test -n "$OCI_SSH_PRIVATE_KEY"
+          mkdir -p ~/.ssh
+          printf '%s\n' "$OCI_SSH_PRIVATE_KEY" > ~/.ssh/oci_deploy_key
+          chmod 600 ~/.ssh/oci_deploy_key
+          ssh-keyscan -H "$OCI_SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Rsync artifacts to Oracle VM
+        env:
+          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
+          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+        run: |
+          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+
+          ssh $SSH_OPTS "$DEPLOY_HOST" 'mkdir -p /opt/ulnovatech/public_html /opt/ulnovatech/repo'
+
+          rsync -az --delete -e "ssh $SSH_OPTS" \
+            public_html/ "${DEPLOY_HOST}:/opt/ulnovatech/public_html/"
+
+          rsync -az -e "ssh $SSH_OPTS" \
+            --exclude 'env/*.env' \
+            --exclude 'env/docker.ulnovatech.env' \
+            --exclude 'env/docker.discovery.env' \
+            infra/ "${DEPLOY_HOST}:/opt/ulnovatech/repo/infra/"
+
+          rsync -az -e "ssh $SSH_OPTS" \
+            --exclude node_modules \
+            --exclude .next \
+            --exclude .turbo \
+            --exclude .env \
+            discovery/ "${DEPLOY_HOST}:/opt/ulnovatech/repo/discovery/"
+
+      - name: Deploy Docker stack and run migrations
+        env:
+          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
+          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+        run: |
+          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+
+          ssh $SSH_OPTS "$DEPLOY_HOST" bash -s <<'REMOTE'
+          set -euo pipefail
+          cd /opt/ulnovatech/repo
+
+          if [[ -f /opt/ulnovatech/secrets/service-account.json ]]; then
+            install -m 600 -D /opt/ulnovatech/secrets/service-account.json \
+              /opt/ulnovatech/public_html/ulndash/backend/service-account.json
+          fi
+
+          export PUBLIC_HTML_PATH=/opt/ulnovatech/public_html
+          export ULNOVATECH_ENV_FILE=/opt/ulnovatech/env/docker.ulnovatech.env
+          export DISCOVERY_ENV_FILE=/opt/ulnovatech/env/docker.discovery.env
+
+          if [[ ! -f "$ULNOVATECH_ENV_FILE" ]]; then
+            echo "Missing $ULNOVATECH_ENV_FILE — create from infra/env/docker.ulnovatech.env.example on the VM" >&2
+            exit 1
+          fi
+          if [[ ! -f "$DISCOVERY_ENV_FILE" ]]; then
+            echo "Missing $DISCOVERY_ENV_FILE — create from infra/env/docker.discovery.env.example on the VM" >&2
+            exit 1
+          fi
+
+          docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
+
+          docker compose -f infra/docker-compose.full.yml run --rm discovery-migrate
+
+          docker compose -f infra/docker-compose.full.yml exec -T php-fpm \
+            php /var/www/public_html/ulndash/backend/scripts/apply_admin_mobile_migrations.php
+
+          docker compose -f infra/docker-compose.full.yml ps
+          REMOTE
+
+      - name: Smoke test (HTTP on VM)
+        env:
+          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
+          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+        run: |
+          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+          ssh $SSH_OPTS "$DEPLOY_HOST" \
+            'bash /opt/ulnovatech/repo/infra/scripts/smoke-full.sh http://127.0.0.1'
