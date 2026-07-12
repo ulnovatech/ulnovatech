@@ -277,9 +277,19 @@ Env file paths must be exported on every manual compose invocation.
 | Cloudflare 521/522 | GCE firewall + UFW allow 80; instance running |
 | Cloudflare SSL errors | Use **Flexible** while origin is HTTP-only (`listen 80`) |
 
-## Related docs
+## 11. Cutover checklist (handoff)
 
-- [`infra/README.md`](../infra/README.md) — compose services and local dev
-- [`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md) — DNS + SSL
-- [`ECOSYSTEM.md`](./ECOSYSTEM.md) — product map
-- [`DISCOVERY_INTELLIGENCE.md`](./DISCOVERY_INTELLIGENCE.md) — operator handoff
+| Check | Status / action |
+|-------|-----------------|
+| GCE VM `ulnovatech-prod` running | `e2-standard-2` @ `34.66.94.12` |
+| Docker full stack up | nginx, php-fpm, mysql, postgres, discovery-web, discovery-worker |
+| Hub smoke on VM | `curl -H 'Host: ulnovatech.store' http://127.0.0.1/health` → 200 |
+| Discovery API | `http://127.0.0.1:3000/api/health` → 200 |
+| GitHub secrets | `GCE_SSH_*` set; workflow [Deploy to GCE](../.github/workflows/deploy.yml) |
+| Public DNS | **Manual:** InfinityFree/byet A records → `34.66.94.12` (NS still `ns*.byet.org`) |
+| Clerk | Optional: set keys in `docker.discovery.env`, then `ALLOW_DEV_AUTH=false` + `NODE_ENV=production` |
+| Backups | Schedule `mysqldump` / `pg_dump` cron; copy off-box (GCS) |
+| Budget | Trial ~$300 / 90 days; expect ~$50–110/mo after upgrade |
+| Spare VM | `instance-20260708-015724` stopped to free CPU quota — delete if unused |
+
+**Operator cannot skip:** update DNS A records in the InfinityFree control panel, or the public hostname will keep pointing at the old host.
