@@ -12,7 +12,9 @@ const isCronApi = createRouteMatcher([
 const isPublicPage = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)']);
 
 function devAuthAllowed() {
-  return process.env.ALLOW_DEV_AUTH === 'true' && process.env.NODE_ENV !== 'production';
+  // ALLOW_DEV_AUTH alone — Next production builds inline NODE_ENV=production into
+  // middleware, so a NODE_ENV check would block legitimate interim GCE deploys.
+  return process.env.ALLOW_DEV_AUTH === 'true';
 }
 
 function clerkConfigured() {

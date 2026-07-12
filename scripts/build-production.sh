@@ -35,8 +35,12 @@ composer_install_backend() {
 npm_install_if_needed marketing
 run_step "Build marketing app" npm --prefix marketing run build
 
-npm_install_if_needed uln-blog
-run_step "Build blog app" npm --prefix uln-blog run build
+if [[ -f uln-blog/package.json ]]; then
+  npm_install_if_needed uln-blog
+  run_step "Build blog app" npm --prefix uln-blog run build
+else
+  echo "WARN: uln-blog/package.json missing — skipping blog build (submodule not checked out?)"
+fi
 
 npm_install_if_needed ulndash/frontend
 run_step "Build CRM dashboard" npm --prefix ulndash/frontend run build
@@ -55,7 +59,12 @@ echo "==> Assemble public_html"
 
 cp -a marketing/dist/. "$PUBLIC_HTML/"
 mkdir -p "$PUBLIC_HTML/blog" "$PUBLIC_HTML/dash" "$PUBLIC_HTML/portfolio-app"
-cp -a uln-blog/dist/. "$PUBLIC_HTML/blog/"
+if [[ -d uln-blog/dist ]]; then
+  cp -a uln-blog/dist/. "$PUBLIC_HTML/blog/"
+else
+  echo "WARN: uln-blog/dist missing — leaving empty /blog/"
+  printf '%s\n' '<!DOCTYPE html><html><body><p>Blog build skipped.</p></body></html>' > "$PUBLIC_HTML/blog/index.html"
+fi
 cp -a ulndash/frontend/dist/. "$PUBLIC_HTML/dash/"
 cp -a portfolio/frontend/dist/. "$PUBLIC_HTML/portfolio-app/"
 

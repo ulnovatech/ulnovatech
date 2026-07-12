@@ -1,83 +1,69 @@
-# Cloudflare DNS — UlnoVaTech production
+# DNS — UlnoVaTech production (GCE)
 
-Point **ulnovatech.store** and **discovery.ulnovatech.store** at your **Google Compute Engine** static public IP. Cloudflare free plan is sufficient.
+Point **ulnovatech.store** and **discovery.ulnovatech.store** at the GCE static IP **`34.66.94.12`**.
 
-Primary runbook: [`DEPLOY_GCLOUD.md`](./DEPLOY_GCLOUD.md).
+## Current DNS reality (as of cutover)
+
+Nameservers for `ulnovatech.store` are **InfinityFree / byet.org** (`ns1.byet.org` … `ns5.byet.org`), not Cloudflare. Apex currently resolves to InfinityFree (`185.27.134.113`).
+
+Until nameservers move to Cloudflare, update **A records in the InfinityFree / byet control panel** (or wherever those NS are managed).
+
+| Type | Name | Content | Notes |
+|------|------|---------|-------|
+| **A** | `@` / `ulnovatech.store` | `34.66.94.12` | Hub |
+| **A** | `www` | `34.66.94.12` | Or CNAME → apex if panel allows |
+| **A** | `discovery` | `34.66.94.12` | Discovery Intelligence |
+
+### Optional later: Cloudflare Free edge
+
+1. Add site in Cloudflare and change registrar NS to Cloudflare.
+2. Create the same A records (proxied / orange cloud).
+3. SSL/TLS mode **Flexible** while origin nginx is HTTP `:80` only.
+4. See [`DEPLOY_GCLOUD.md`](./DEPLOY_GCLOUD.md).
 
 ## Prerequisites
 
-- GCE VM with a **static public IPv4** (reserved address recommended)
-- [`infra/gcloud/bootstrap.sh`](../infra/gcloud/bootstrap.sh) completed; nginx listening on **port 80** (Compose prod publishes `80:80`)
-- GCE VPC firewall + UFW allow **22**, **80**, **443**
-- Cloudflare account with **ulnovatech.store** added as a site
+- GCE VM `ulnovatech-prod` with static IP `34.66.94.12`
+- [`infra/gcloud/bootstrap.sh`](../infra/gcloud/bootstrap.sh) completed; nginx on port 80
+- GCE firewall + UFW allow 22/80/443
 
-## DNS records
+## SSL while on InfinityFree DNS
 
-Replace `YOUR_VM_PUBLIC_IP` with the GCE static IP.
+Without Cloudflare, browsers hit the VM on **HTTP** unless you add origin TLS (certbot) later. For a first cutover, confirm:
 
-| Type | Name | Content | Proxy | TTL |
-|------|------|---------|-------|-----|
-| **A** | `@` | `YOUR_VM_PUBLIC_IP` | Proxied (orange cloud) | Auto |
-| **CNAME** | `www` | `ulnovatech.store` | Proxied | Auto |
-| **A** | `discovery` | `YOUR_VM_PUBLIC_IP` | Proxied | Auto |
+```bash
+curl -sI -H "Host: ulnovatech.store" http://34.66.94.12/health
+```
 
-### Notes
+After A records propagate:
 
-- **Root (`@`)** — serves `https://ulnovatech.store` (marketing, `/dash/`, PHP APIs).
-- **www** — CNAME to apex; nginx already accepts `www.ulnovatech.store`.
-- **discovery** — serves `https://discovery.ulnovatech.store` (Discovery Intelligence via nginx `discovery.conf`).
+```bash
+curl -sI http://ulnovatech.store/health
+curl -sI -H "Host: discovery.ulnovatech.store" http://discovery.ulnovatech.store/
+```
 
-Optional (email, not required for app deploy):
-
-| Type | Name | Content |
-|------|------|---------|
-| MX | `@` | Your mail provider |
-| TXT | `@` | SPF / verification records |
-
-## SSL/TLS (Flexible — current origin)
-
-nginx production configs listen on **HTTP `:80` only** (see [`infra/nginx/`](../infra/nginx/) and [`infra/docker-compose.prod.yml`](../infra/docker-compose.prod.yml)). Cloudflare terminates HTTPS at the edge; traffic to the origin is HTTP.
-
-### Edge mode (cutover)
+## Cloudflare path (when NS moved)
 
 | Setting | Value |
 |---------|-------|
-| SSL/TLS encryption mode | **Flexible** |
+| SSL/TLS encryption mode | **Flexible** (HTTP origin) |
 | Always Use HTTPS | On |
 | Minimum TLS Version | 1.2 |
-| Automatic HTTPS Rewrites | On |
 
-**Flexible** matches an HTTP-only origin. Do **not** set Full / Full (strict) until nginx serves HTTPS with a valid origin certificate (Cloudflare Origin Certificate or Let's Encrypt) — that is a later hardening step.
-
-### Future: Full (strict)
-
-When ready:
-
-1. Cloudflare → **SSL/TLS** → **Origin Server** → **Create Certificate** for `ulnovatech.store`, `*.ulnovatech.store`
-2. Install cert on the VM and add `listen 443 ssl` (see [`infra/nginx/README.md`](../infra/nginx/README.md))
-3. Switch Cloudflare to **Full (strict)**
+**Full (strict)** only after nginx serves HTTPS with a valid origin certificate.
 
 ## Verification
 
-After DNS propagates (usually minutes with Cloudflare):
-
 ```bash
-dig +short ulnovatech.store
-dig +short discovery.ulnovatech.store
+nslookup ulnovatech.store
+nslookup discovery.ulnovatech.store
 
-curl -sI https://ulnovatech.store/
-curl -sI https://discovery.ulnovatech.store/
-```
-
-Production smoke from any machine:
-
-```bash
-DISCOVERY_URL=https://discovery.ulnovatech.store \
-  bash infra/scripts/smoke-full.sh https://ulnovatech.store
+curl -sI http://ulnovatech.store/health
+curl -sI http://discovery.ulnovatech.store/
 ```
 
 ## GitHub Actions / deploy
 
-No Cloudflare API token is required for the default GCE SSH deploy workflow. Manage DNS manually in the Cloudflare dashboard.
+No DNS API token is required for the GCE SSH deploy workflow. Manage DNS in InfinityFree/byet (or Cloudflare after NS cutover).
 
 See [`DEPLOY_GCLOUD.md`](./DEPLOY_GCLOUD.md) for the full operator runbook.
