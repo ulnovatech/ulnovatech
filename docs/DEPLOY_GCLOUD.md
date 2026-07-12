@@ -34,13 +34,14 @@ Google Places / CSE / Clerk costs are **outside** GCE compute credit.
 | Project | `cedar-network-468517-e9` |
 | Name | `ulnovatech-prod` |
 | Zone | `us-central1-a` |
-| Machine type | `e2-medium` (1 vCPU / 4 GB) — **temporary** until global CPU quota allows `e2-standard-2` |
+| Machine type | `e2-standard-2` (2 vCPU / 8 GB) — resized after freeing quota from `instance-20260708-015724` |
 | Static IP | `34.66.94.12` (`ulnovatech-ip-usc1`) |
 | Network tag | `ulnovatech-web` |
 | Firewall | `ulnovatech-allow-web` (tcp 22/80/443) |
 | Disk | 60 GB pd-balanced |
-| Hub status (Chunk 4) | HTTP 200 for `/health`, `/`, `/dash/` with `Host: ulnovatech.store` |
-| Discovery status | Containers up; **needs Clerk keys** in `docker.discovery.env` (empty keys → 500 from middleware) |
+| Hub status | HTTP 200 for `/health`, `/`, `/dash/` with `Host: ulnovatech.store`; also via `http://34.66.94.12` |
+| Discovery status | API `/api/health` OK; UI uses `ALLOW_DEV_AUTH=true` until Clerk keys are set |
+| Public DNS | Still on InfinityFree/byet (`ns*.byet.org`) → update A records to `34.66.94.12` (see [`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)) |
 
 **Compose `.env` location:** put `MYSQL_*` / `POSTGRES_PASSWORD` in **`infra/.env`** (directory of the first `-f` file), not only repo-root `.env`.
 
