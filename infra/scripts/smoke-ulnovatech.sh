@@ -3,24 +3,26 @@
 set -euo pipefail
 
 BASE="${1:-http://localhost:8080}"
+HOST_HDR="${SMOKE_HOST:-ulnovatech.store}"
 ADMIN_USER="${DASH_ADMIN_USER:-admin}"
 ADMIN_PASS="${DASH_ADMIN_PASS:-changeme}"
+CURL=(curl -s -H "Host: ${HOST_HDR}")
 
-echo "=== UlnoVaTech smoke tests @ ${BASE} ==="
+echo "=== UlnoVaTech smoke tests @ ${BASE} (Host: ${HOST_HDR}) ==="
 
-code_health=$(curl -s -o /dev/null -w '%{http_code}' "${BASE}/health")
+code_health=$("${CURL[@]}" -o /dev/null -w '%{http_code}' "${BASE}/health")
 echo "GET /health → ${code_health}"
 [[ "$code_health" == "200" ]] || { echo "FAIL: /health"; exit 1; }
 
-code_home=$(curl -s -o /dev/null -w '%{http_code}' "${BASE}/")
+code_home=$("${CURL[@]}" -o /dev/null -w '%{http_code}' "${BASE}/")
 echo "GET / → ${code_home}"
 [[ "$code_home" == "200" ]] || { echo "FAIL: /"; exit 1; }
 
-code_dash=$(curl -s -o /dev/null -w '%{http_code}' "${BASE}/dash/")
+code_dash=$("${CURL[@]}" -o /dev/null -w '%{http_code}' "${BASE}/dash/")
 echo "GET /dash/ → ${code_dash}"
 [[ "$code_dash" == "200" ]] || { echo "FAIL: /dash/"; exit 1; }
 
-login_body=$(curl -s -X POST "${BASE}/api/auth/mobile/login" \
+login_body=$("${CURL[@]}" -X POST "${BASE}/api/auth/mobile/login" \
   -H 'Content-Type: application/json' \
   -d "{\"username\":\"${ADMIN_USER}\",\"password\":\"${ADMIN_PASS}\"}")
 echo "POST /api/auth/mobile/login → ${login_body:0:120}"
@@ -31,7 +33,7 @@ else
   echo "WARN: mobile login did not return token (check DASH_ADMIN_* in env file)"
 fi
 
-code_newsletter=$(curl -s -o /dev/null -w '%{http_code}' -X POST "${BASE}/php/newsletter.php" \
+code_newsletter=$("${CURL[@]}" -o /dev/null -w '%{http_code}' -X POST "${BASE}/php/newsletter.php" \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'email=smoke-test@example.com')
 echo "POST /php/newsletter.php → ${code_newsletter}"
