@@ -93,6 +93,7 @@ install -d -m 0755 -o "$DEPLOY_USER" -g "$DEPLOY_USER" \
   "${DEPLOY_ROOT}/repo"
 
 chmod 700 "${DEPLOY_ROOT}/secrets" "${DEPLOY_ROOT}/env"
+# Env *.env files must be readable by php-fpm (www-data) after bind-mount — use 644 when created.
 
 # --- Hardening hints ---
 log "Bootstrap complete"

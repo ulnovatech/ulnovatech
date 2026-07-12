@@ -79,6 +79,9 @@ jobs:
           ssh $SSH_OPTS "$DEPLOY_HOST" 'mkdir -p /opt/ulnovatech/public_html /opt/ulnovatech/repo'
 
           rsync -az --delete -e "ssh $SSH_OPTS" \
+            --exclude '.env' \
+            --exclude 'php/.env' \
+            --exclude 'ulndash/backend/.env' \
             public_html/ "${DEPLOY_HOST}:/opt/ulnovatech/public_html/"
 
           rsync -az -e "ssh $SSH_OPTS" \
@@ -126,12 +129,22 @@ jobs:
             exit 1
           fi
 
+          # php-fpm runs as www-data (uid 33); mode 600 owned by deploy is unreadable → DB connection failed
+          chmod 644 "$ULNOVATECH_ENV_FILE" "$DISCOVERY_ENV_FILE"
+          # Bind-mount targets must be files (not directories) before recreate
+          mkdir -p /opt/ulnovatech/public_html/php /opt/ulnovatech/public_html/ulndash/backend
+          : > /opt/ulnovatech/public_html/php/.env
+          : > /opt/ulnovatech/public_html/ulndash/backend/.env
+
           # Compose reads MYSQL_*/POSTGRES_* from infra/.env (dir of first -f file)
           if [[ -f /opt/ulnovatech/repo/.env && ! -f /opt/ulnovatech/repo/infra/.env ]]; then
             install -m 600 /opt/ulnovatech/repo/.env /opt/ulnovatech/repo/infra/.env
           fi
 
           docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
+
+          # nginx caches php-fpm upstream IPs at start; recreate refreshes after php-fpm rebuild
+          docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --force-recreate --no-deps nginx
 
           docker compose -f infra/docker-compose.full.yml run --rm discovery-migrate
 

@@ -270,12 +270,14 @@ Env file paths must be exported on every manual compose invocation.
 
 | Symptom | Check |
 |---------|-------|
-| 502 on `/api/` | `docker compose ps`, php-fpm logs, `DB_*` in env file |
+| 502 on `/api/` or `/php/` | Stale nginx→php-fpm IP after recreate — `docker compose … up -d --force-recreate --no-deps nginx` |
+| `DB connection failed` (API) | Env file mode `600` unreadable by www-data — `chmod 644 /opt/ulnovatech/env/docker.ulnovatech.env`, recreate php-fpm |
 | Discovery 502 | `discovery-web` health, `DATABASE_URL`, migrate logs |
 | Mobile login fails | `DASH_ADMIN_PASS_HASH`, not plain `DASH_ADMIN_PASS` |
 | FCM push silent | `service-account.json` in `ulndash/backend/`, `FCM_PROJECT_ID` |
 | Cloudflare 521/522 | GCE firewall + UFW allow 80; instance running |
 | Cloudflare SSL errors | Use **Flexible** while origin is HTTP-only (`listen 80`) |
+| Public site still InfinityFree | Update byet A records to `34.66.94.12` ([`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)) |
 
 ## 11. Cutover checklist (handoff)
 
@@ -288,7 +290,7 @@ Env file paths must be exported on every manual compose invocation.
 | GitHub secrets | `GCE_SSH_*` set; workflow [Deploy to GCE](../.github/workflows/deploy.yml) |
 | Public DNS | **Manual:** InfinityFree/byet A records → `34.66.94.12` (NS still `ns*.byet.org`) |
 | Clerk | Optional: set keys in `docker.discovery.env`, then `ALLOW_DEV_AUTH=false` + `NODE_ENV=production` |
-| Backups | Schedule `mysqldump` / `pg_dump` cron; copy off-box (GCS) |
+| Backups | Daily cron `15 3 * * *` → `/usr/local/bin/ulnovatech-backup.sh` → `/opt/ulnovatech/backups/` (14-day retention); copy off-box (GCS) recommended |
 | Budget | Trial ~$300 / 90 days; expect ~$50–110/mo after upgrade |
 | Spare VM | `instance-20260708-015724` stopped to free CPU quota — delete if unused |
 

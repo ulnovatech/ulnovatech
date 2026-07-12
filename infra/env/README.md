@@ -8,7 +8,7 @@ Secrets and runtime configuration live **outside git**. Copy the `.example` temp
 /opt/ulnovatech/
 ├── secrets/                    # Never commit — chmod 600
 │   └── service-account.json    # GCP/Firebase (GA + FCM)
-├── env/                        # chmod 600 on *.env files
+├── env/                        # dir chmod 700; *.env files chmod 644 (php-fpm www-data must read mounts)
 │   ├── docker.ulnovatech.env     # MySQL CRM + PHP (from docker.ulnovatech.env.example)
 │   └── docker.discovery.env      # Postgres + Discovery (from docker.discovery.env.example)
 ├── public_html/                # Built static output (rsync from CI or local build)
@@ -68,7 +68,12 @@ sudo chown -R deploy:deploy /opt/ulnovatech
 
 cp /opt/ulnovatech/repo/infra/env/docker.ulnovatech.env.example /opt/ulnovatech/env/docker.ulnovatech.env
 cp /opt/ulnovatech/repo/infra/env/docker.discovery.env.example /opt/ulnovatech/env/docker.discovery.env
-chmod 600 /opt/ulnovatech/env/*.env /opt/ulnovatech/secrets/*
+chmod 700 /opt/ulnovatech/env
+# 644 required: bind-mounted into php-fpm as www-data (uid 33). Dir stays 700.
+chmod 644 /opt/ulnovatech/env/*.env
+chmod 600 /opt/ulnovatech/secrets/*
 ```
+
+**If CRM returns `DB connection failed` with empty details:** check that `/opt/ulnovatech/env/docker.ulnovatech.env` is world-readable (`644`), then `docker compose … up -d --force-recreate php-fpm` and recreate nginx.
 
 Full operator steps: [`docs/DEPLOY_GCLOUD.md`](../../docs/DEPLOY_GCLOUD.md). Legacy Oracle: [`docs/DEPLOY_ORACLE.md`](../../docs/DEPLOY_ORACLE.md).
