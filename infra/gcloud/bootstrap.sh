@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
-# Oracle Cloud VM bootstrap — Ubuntu 22.04 / 24.04 (ARM64 or AMD64)
+# Google Compute Engine VM bootstrap — Ubuntu 22.04 / 24.04 (AMD64)
 # Idempotent host prep for UlnoVaTech Docker deploy.
 #
-# Legacy: primary target is GCE — see infra/gcloud/bootstrap.sh and docs/DEPLOY_GCLOUD.md
-#
 # Usage (as root):
-#   curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ulnovatech/main/infra/oracle/bootstrap.sh | sudo bash
+#   curl -fsSL https://raw.githubusercontent.com/YOUR_ORG/ulnovatech/main/infra/gcloud/bootstrap.sh | sudo bash
 #   # or from a git checkout:
-#   sudo bash infra/oracle/bootstrap.sh
+#   sudo bash infra/gcloud/bootstrap.sh
 #
 # Optional env:
 #   DEPLOY_USER=deploy   default deploy user name
@@ -62,7 +60,15 @@ if command -v ufw >/dev/null 2>&1; then
   ufw allow 443/tcp comment 'HTTPS' || true
   ufw --force enable || true
 else
-  log "UFW not installed — skipping firewall (install ufw manually if needed)"
+  log "UFW not installed — installing and configuring"
+  apt-get update -qq
+  apt-get install -y -qq ufw
+  ufw --force default deny incoming
+  ufw --force default allow outgoing
+  ufw allow 22/tcp comment 'SSH'
+  ufw allow 80/tcp comment 'HTTP'
+  ufw allow 443/tcp comment 'HTTPS'
+  ufw --force enable
 fi
 
 # --- Deploy user ---
@@ -96,8 +102,10 @@ Next steps (as ${DEPLOY_USER}):
   1. Add your SSH public key to ~${DEPLOY_USER}/.ssh/authorized_keys
   2. Clone the repo to ${DEPLOY_ROOT}/repo
   3. Copy env templates to ${DEPLOY_ROOT}/env/ (see infra/env/README.md)
-  4. Place service-account.json in ${DEPLOY_ROOT}/secrets/
-  5. Follow docs/DEPLOY_ORACLE.md for first deploy (or docs/DEPLOY_GCLOUD.md on GCE)
+  4. Place service-account.json in ${DEPLOY_ROOT}/secrets/ (optional FCM/GA)
+  5. Follow docs/DEPLOY_GCLOUD.md for first deploy
+
+Also open GCE VPC firewall for tcp:22, tcp:80, tcp:443 (tag e.g. ulnovatech-web).
 
 Re-login as ${DEPLOY_USER} if docker group was just added.
 

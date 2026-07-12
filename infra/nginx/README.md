@@ -1,4 +1,4 @@
-# Nginx routing for UlnoVaTech (Oracle / Docker)
+# Nginx routing for UlnoVaTech (GCE / Docker)
 
 Replaces Apache `.htaccess` rules with nginx `server` blocks.
 
@@ -54,7 +54,7 @@ curl -s -X POST http://localhost:8080/api/auth/mobile/login -H 'Content-Type: ap
 
 ## Cloudflare / TLS
 
-Terminate SSL at Cloudflare (Full strict) or add a `listen 443 ssl` server block with origin certificates on the VM. These configs listen on port 80 for origin-behind-Cloudflare.
+These configs listen on **port 80** for origin-behind-Cloudflare. Use Cloudflare SSL mode **Flexible** until origin HTTPS is configured. Later: add `listen 443 ssl` with a Cloudflare Origin Certificate and switch to Full (strict). See [`docs/CLOUDFLARE_DNS.md`](../../docs/CLOUDFLARE_DNS.md).
 
 ## CRM API note
 

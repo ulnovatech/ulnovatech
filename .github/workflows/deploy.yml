@@ -1,4 +1,4 @@
-name: Deploy to Oracle
+name: Deploy to GCE
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: oracle-production
+  group: gce-production
   cancel-in-progress: false
 
 jobs:
   deploy:
-    name: Build and deploy to OCI VM
+    name: Build and deploy to GCE VM
     runs-on: ubuntu-latest
     environment: production
 
@@ -54,24 +54,24 @@ jobs:
 
       - name: Configure SSH
         env:
-          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
-          OCI_SSH_PRIVATE_KEY: ${{ secrets.OCI_SSH_PRIVATE_KEY }}
+          GCE_SSH_HOST: ${{ secrets.GCE_SSH_HOST }}
+          GCE_SSH_PRIVATE_KEY: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
         run: |
-          test -n "$OCI_SSH_HOST"
-          test -n "$OCI_SSH_PRIVATE_KEY"
+          test -n "$GCE_SSH_HOST"
+          test -n "$GCE_SSH_PRIVATE_KEY"
           mkdir -p ~/.ssh
-          printf '%s\n' "$OCI_SSH_PRIVATE_KEY" > ~/.ssh/oci_deploy_key
-          chmod 600 ~/.ssh/oci_deploy_key
-          ssh-keyscan -H "$OCI_SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
+          printf '%s\n' "$GCE_SSH_PRIVATE_KEY" > ~/.ssh/gce_deploy_key
+          chmod 600 ~/.ssh/gce_deploy_key
+          ssh-keyscan -H "$GCE_SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null || true
 
-      - name: Rsync artifacts to Oracle VM
+      - name: Rsync artifacts to GCE VM
         env:
-          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
-          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+          GCE_SSH_HOST: ${{ secrets.GCE_SSH_HOST }}
+          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}
         run: |
-          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
-          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
-          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+          DEPLOY_USER="${GCE_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${GCE_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/gce_deploy_key -o StrictHostKeyChecking=accept-new"
 
           ssh $SSH_OPTS "$DEPLOY_HOST" 'mkdir -p /opt/ulnovatech/public_html /opt/ulnovatech/repo'
 
@@ -82,6 +82,7 @@ jobs:
             --exclude 'env/*.env' \
             --exclude 'env/docker.ulnovatech.env' \
             --exclude 'env/docker.discovery.env' \
+            --exclude '.env' \
             infra/ "${DEPLOY_HOST}:/opt/ulnovatech/repo/infra/"
 
           rsync -az -e "ssh $SSH_OPTS" \
@@ -93,12 +94,12 @@ jobs:
 
       - name: Deploy Docker stack and run migrations
         env:
-          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
-          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+          GCE_SSH_HOST: ${{ secrets.GCE_SSH_HOST }}
+          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}
         run: |
-          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
-          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
-          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+          DEPLOY_USER="${GCE_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${GCE_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/gce_deploy_key -o StrictHostKeyChecking=accept-new"
 
           ssh $SSH_OPTS "$DEPLOY_HOST" bash -s <<'REMOTE'
           set -euo pipefail
@@ -122,6 +123,11 @@ jobs:
             exit 1
           fi
 
+          # Compose reads MYSQL_*/POSTGRES_* from infra/.env (dir of first -f file)
+          if [[ -f /opt/ulnovatech/repo/.env && ! -f /opt/ulnovatech/repo/infra/.env ]]; then
+            install -m 600 /opt/ulnovatech/repo/.env /opt/ulnovatech/repo/infra/.env
+          fi
+
           docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
 
           docker compose -f infra/docker-compose.full.yml run --rm discovery-migrate
@@ -134,11 +140,12 @@ jobs:
 
       - name: Smoke test (HTTP on VM)
         env:
-          OCI_SSH_HOST: ${{ secrets.OCI_SSH_HOST }}
-          OCI_SSH_USER: ${{ secrets.OCI_SSH_USER }}
+          GCE_SSH_HOST: ${{ secrets.GCE_SSH_HOST }}
+          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}
         run: |
-          DEPLOY_USER="${OCI_SSH_USER:-deploy}"
-          DEPLOY_HOST="${DEPLOY_USER}@${OCI_SSH_HOST}"
-          SSH_OPTS="-i ~/.ssh/oci_deploy_key -o StrictHostKeyChecking=accept-new"
+          DEPLOY_USER="${GCE_SSH_USER:-deploy}"
+          DEPLOY_HOST="${DEPLOY_USER}@${GCE_SSH_HOST}"
+          SSH_OPTS="-i ~/.ssh/gce_deploy_key -o StrictHostKeyChecking=accept-new"
+          # Hub smoke with Host header (server_name). Full Discovery smoke needs Clerk keys.
           ssh $SSH_OPTS "$DEPLOY_HOST" \
-            'bash /opt/ulnovatech/repo/infra/scripts/smoke-full.sh http://127.0.0.1'
+            'curl -sf -H "Host: ulnovatech.store" http://127.0.0.1/health && bash /opt/ulnovatech/repo/infra/scripts/smoke-ulnovatech.sh http://127.0.0.1'

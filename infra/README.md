@@ -1,4 +1,4 @@
-# UlnoVaTech infrastructure (Oracle VM / Docker)
+# UlnoVaTech infrastructure (GCE VM / Docker)
 
 ## Quick start (local)
 
@@ -73,15 +73,16 @@ Add Discovery to an already-running ulnovatech stack:
 npm run docker:discovery
 ```
 
-## Production (Oracle Cloud VM)
+## Production (Google Compute Engine)
 
 | Step | Doc / script |
 |------|----------------|
-| Host bootstrap (Docker, UFW, `/opt/ulnovatech`) | [`oracle/bootstrap.sh`](./oracle/bootstrap.sh) |
+| Host bootstrap (Docker, UFW, `/opt/ulnovatech`) | [`gcloud/bootstrap.sh`](./gcloud/bootstrap.sh) |
 | Env templates + server layout | [`env/README.md`](./env/README.md) |
 | Cloudflare DNS | [`docs/CLOUDFLARE_DNS.md`](../docs/CLOUDFLARE_DNS.md) |
-| Operator runbook | [`docs/DEPLOY_ORACLE.md`](../docs/DEPLOY_ORACLE.md) |
+| Operator runbook | [`docs/DEPLOY_GCLOUD.md`](../docs/DEPLOY_GCLOUD.md) |
 | CI / deploy | [`.github/workflows/ci.yml`](../.github/workflows/ci.yml), [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) |
+| Legacy Oracle | [`oracle/bootstrap.sh`](./oracle/bootstrap.sh), [`docs/DEPLOY_ORACLE.md`](../docs/DEPLOY_ORACLE.md) |
 
 Production compose (full stack, port 80):
 
@@ -148,8 +149,10 @@ infra/
 │   ├── docker.ulnovatech.env.example
 │   ├── docker.discovery.env.example
 │   └── ulnovatech.env.example    # naming alias doc
+├── gcloud/
+│   └── bootstrap.sh              # Ubuntu AMD64 host prep (primary)
 ├── oracle/
-│   └── bootstrap.sh              # Ubuntu ARM64/AMD64 host prep
+│   └── bootstrap.sh              # Legacy Oracle ARM64/AMD64 host prep
 ├── mysql/init/
 ├── nginx/                        # see nginx/README.md
 ├── php/Dockerfile

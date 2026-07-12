@@ -7,7 +7,7 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json tsconfig.json ./
 COPY apps ./apps
 COPY packages ./packages
 COPY modules ./modules
@@ -20,6 +20,7 @@ ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
 ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 # Satisfy env validation during `next build` (runtime uses compose env_file).
 ENV DATABASE_URL=postgresql://build:build@127.0.0.1:5432/build
+RUN mkdir -p apps/dashboard/public
 RUN pnpm build
 
 # --- Next.js production server (port 3000) ---

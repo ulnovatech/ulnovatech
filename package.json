@@ -4,6 +4,10 @@
   "description": "Orchestrator for the UlnoVaTech multi-app system",
   "scripts": {
     "dev": "concurrently \"npx serve . -p 3000\" \"npm --prefix marketing run dev -- --port 5176\" \"npm --prefix uln-blog run dev -- --port 5173\" \"npm --prefix ulndash/frontend run dev -- --port 5174\" \"npm --prefix portfolio/frontend run dev -- --port 5175\"",
+    "dev:all": "concurrently -n marketing,blog,dash,portfolio,discovery,static -c blue,green,yellow,magenta,cyan,gray \"npm --prefix marketing run dev -- --port 5176\" \"npm --prefix uln-blog run dev -- --port 5173\" \"npm --prefix ulndash/frontend run dev -- --port 5174\" \"npm --prefix portfolio/frontend run dev -- --port 5175\" \"pnpm --prefix discovery dev\" \"npx serve . -p 3000\"",
+    "local": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-up.ps1",
+    "local:dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/local-up.ps1 -Dev",
+    "local:down": "docker compose -f infra/docker-compose.full.yml down",
     "dev:admin-mobile": "npm --prefix admin-mobile run dev",
     "setup:admin-mobile": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-admin-mobile.ps1",
     "build:admin-apk": "npm --prefix admin-mobile run build:apk",

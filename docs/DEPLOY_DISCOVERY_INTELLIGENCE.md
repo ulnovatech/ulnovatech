@@ -2,7 +2,7 @@
 
 Discovery Intelligence lives at [`discovery/`](../discovery/) in this monorepo.
 
-**Production target:** Oracle Cloud VM (Docker) alongside ulnovatech — see [DEPLOY_ORACLE.md](./DEPLOY_ORACLE.md) (added in later deploy chunks).
+**Production target:** Google Compute Engine VM (Docker) alongside ulnovatech — see [DEPLOY_GCLOUD.md](./DEPLOY_GCLOUD.md).
 
 This document covers **local setup** and **sidebar wiring**. For legacy Vercel/Neon hosting, see [`discovery/docs/DEPLOYMENT.md`](../discovery/docs/DEPLOYMENT.md).
 

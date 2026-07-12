@@ -1,4 +1,4 @@
-# Environment files (Oracle VM / Docker)
+# Environment files (GCE VM / Docker)
 
 Secrets and runtime configuration live **outside git**. Copy the `.example` templates on the server, then edit values for production.
 
@@ -15,7 +15,13 @@ Secrets and runtime configuration live **outside git**. Copy the `.example` temp
 └── repo/                       # Git checkout (infra/, discovery/, scripts/)
 ```
 
-Compose is run from `repo/` with paths pointing at the layout above:
+Compose is run from `repo/` with paths pointing at the layout above. **Important:** Docker Compose loads variable substitution from `.env` next to the *first* `-f` compose file (`infra/.env`), not only from the repo root. Copy compose DB passwords there:
+
+```bash
+# On the VM — keep in sync with /opt/ulnovatech/env/*.env DB passwords
+cp /opt/ulnovatech/repo/.env /opt/ulnovatech/repo/infra/.env   # or write MYSQL_* / POSTGRES_* into infra/.env
+chmod 600 /opt/ulnovatech/repo/infra/.env
+```
 
 ```bash
 cd /opt/ulnovatech/repo
@@ -65,4 +71,4 @@ cp /opt/ulnovatech/repo/infra/env/docker.discovery.env.example /opt/ulnovatech/e
 chmod 600 /opt/ulnovatech/env/*.env /opt/ulnovatech/secrets/*
 ```
 
-Full operator steps: [`docs/DEPLOY_ORACLE.md`](../../docs/DEPLOY_ORACLE.md).
+Full operator steps: [`docs/DEPLOY_GCLOUD.md`](../../docs/DEPLOY_GCLOUD.md). Legacy Oracle: [`docs/DEPLOY_ORACLE.md`](../../docs/DEPLOY_ORACLE.md).

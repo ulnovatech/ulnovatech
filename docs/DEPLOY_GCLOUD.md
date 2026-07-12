@@ -1,8 +1,8 @@
-# Deploy UlnoVaTech to Oracle Cloud (Docker)
+# Deploy UlnoVaTech to Google Compute Engine (Docker)
 
-> **Legacy.** Primary production target is **Google Compute Engine** — see [`DEPLOY_GCLOUD.md`](./DEPLOY_GCLOUD.md). This Oracle runbook is kept for historical reference and ARM64 Always Free attempts.
+Operator runbook for production on a **single GCE VM** (Ubuntu 22.04/24.04 AMD64) with **Cloudflare Free** DNS/TLS edge and **GitHub Actions** deploy.
 
-Operator runbook for production on an **Oracle Cloud ARM64 VM** (Ubuntu 22.04/24.04) with **Cloudflare DNS** and **GitHub Actions** deploy.
+Primary production target. Legacy Oracle runbook: [`DEPLOY_ORACLE.md`](./DEPLOY_ORACLE.md).
 
 ## Architecture
 
@@ -10,25 +10,91 @@ Operator runbook for production on an **Oracle Cloud ARM64 VM** (Ubuntu 22.04/24
 |-----------|---------|
 | Marketing, blog, dash, portfolio, PHP APIs | nginx + php-fpm + MySQL |
 | Discovery Intelligence | postgres + discovery-web + discovery-worker |
-| TLS edge | Cloudflare (proxied A records) |
+| TLS edge | Cloudflare (proxied A records, **Flexible** while origin is HTTP `:80`) |
 | CI/CD | GitHub Actions → SSH/rsync → `docker compose` |
 
 Server layout: [`infra/env/README.md`](../infra/env/README.md).
 
-## 1. Provision Oracle VM
+## Budget note ($300 trial)
 
-1. Create an **Ampere A1** (ARM64) instance — Ubuntu 22.04 or 24.04, ≥ 2 OCPU / 12 GB RAM recommended for full stack.
-2. Attach a **reserved public IP**.
-3. Security list / NSG: allow inbound **22**, **80**, **443** (UFW on the host mirrors this).
-4. Note the public IP for Cloudflare DNS ([`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)).
+| Item | Guidance |
+|------|----------|
+| Recommended shape | `e2-standard-2` (2 vCPU / 8 GB) — bump to `e2-standard-4` if OOM |
+| Disk | 50–80 GB balanced persistent disk |
+| Rough all-in | ~$50–110/mo (VM + disk + egress) |
+| Trial | ~$300 / 90 days — plan paid continue or shrink before credit ends |
+| Always Free `e2-micro` | Too small for full stack; do not use as prod target |
+
+Google Places / CSE / Clerk costs are **outside** GCE compute credit.
+
+## Current production instance
+
+| Field | Value |
+|-------|-------|
+| Project | `cedar-network-468517-e9` |
+| Name | `ulnovatech-prod` |
+| Zone | `us-central1-a` |
+| Machine type | `e2-medium` (1 vCPU / 4 GB) — **temporary** until global CPU quota allows `e2-standard-2` |
+| Static IP | `34.66.94.12` (`ulnovatech-ip-usc1`) |
+| Network tag | `ulnovatech-web` |
+| Firewall | `ulnovatech-allow-web` (tcp 22/80/443) |
+| Disk | 60 GB pd-balanced |
+| Hub status (Chunk 4) | HTTP 200 for `/health`, `/`, `/dash/` with `Host: ulnovatech.store` |
+| Discovery status | Containers up; **needs Clerk keys** in `docker.discovery.env` (empty keys → 500 from middleware) |
+
+**Compose `.env` location:** put `MYSQL_*` / `POSTGRES_PASSWORD` in **`infra/.env`** (directory of the first `-f` file), not only repo-root `.env`.
+
+**Quota note:** project `CPUS_ALL_REGIONS` was 11/12 when provisioning (other VMs: `videoos-media-ai`, `videoos-worker`, `instance-20260708-015724`). Free ≥1 more vCPU (stop or resize another instance), then:
+
+```bash
+gcloud compute instances stop ulnovatech-prod --zone=us-central1-a
+gcloud compute instances set-machine-type ulnovatech-prod --zone=us-central1-a --machine-type=e2-standard-2
+gcloud compute instances start ulnovatech-prod --zone=us-central1-a
+```
+
+## 1. Provision GCE VM
+
+```bash
+# Example — adjust PROJECT, ZONE, and SSH key path
+export PROJECT=YOUR_GCP_PROJECT
+export ZONE=us-central1-a
+export NAME=ulnovatech-prod
+
+gcloud config set project "$PROJECT"
+
+# Firewall (once per project)
+gcloud compute firewall-rules create ulnovatech-allow-web \
+  --allow=tcp:22,tcp:80,tcp:443 \
+  --target-tags=ulnovatech-web \
+  --description="UlnoVaTech SSH + HTTP + HTTPS" \
+  --direction=INGRESS || true
+
+# Static IP
+gcloud compute addresses create ulnovatech-ip --region=us-central1
+STATIC_IP=$(gcloud compute addresses describe ulnovatech-ip --region=us-central1 --format='get(address)')
+
+# VM
+gcloud compute instances create "$NAME" \
+  --zone="$ZONE" \
+  --machine-type=e2-standard-2 \
+  --image-family=ubuntu-2404-lts-amd64 \
+  --image-project=ubuntu-os-cloud \
+  --boot-disk-size=60GB \
+  --boot-disk-type=pd-balanced \
+  --tags=ulnovatech-web \
+  --address=ulnovatech-ip \
+  --metadata=enable-oslogin=FALSE
+```
+
+Note `$STATIC_IP` for Cloudflare ([`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)).
+
+SSH as the default Ubuntu user (or OS Login user), then bootstrap.
 
 ## 2. Bootstrap the host
 
-SSH as `ubuntu` (or default OCI user), then:
-
 ```bash
 # From a fresh git clone on the VM, or pipe from your repo:
-sudo bash infra/oracle/bootstrap.sh
+sudo bash infra/gcloud/bootstrap.sh
 ```
 
 Creates:
@@ -49,7 +115,7 @@ sudo chown -R deploy:deploy /home/deploy/.ssh
 
 ## 3. Cloudflare DNS
 
-Configure A/CNAME records per [`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md) before cutting over production traffic.
+Configure A/CNAME records per [`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md) **after** the stack is healthy on the VM (or point early for cutover). SSL mode: **Flexible** while nginx listens on HTTP `:80` only.
 
 ## 4. Clone repo and environment
 
@@ -77,7 +143,7 @@ Edit `/opt/ulnovatech/env/docker.discovery.env`:
 - `ALLOW_DEV_AUTH=false`
 - Clerk keys, strong Postgres password, `CRON_SECRET`
 
-Place GCP/Firebase credentials:
+Place GCP/Firebase credentials (optional):
 
 ```bash
 install -m 600 /path/to/service-account.json /opt/ulnovatech/secrets/service-account.json
@@ -95,12 +161,10 @@ npm run build:linux
 On the VM as `deploy`:
 
 ```bash
-# Copy build output (from workstation — example)
 rsync -avz public_html/ deploy@VM:/opt/ulnovatech/public_html/
 
-# Sync secrets into backend path (FCM/GA read relative to ulndash/backend)
 cp /opt/ulnovatech/secrets/service-account.json \
-   /opt/ulnovatech/public_html/ulndash/backend/service-account.json
+  /opt/ulnovatech/public_html/ulndash/backend/service-account.json
 chmod 600 /opt/ulnovatech/public_html/ulndash/backend/service-account.json
 
 cd /opt/ulnovatech/repo
@@ -111,7 +175,7 @@ export DISCOVERY_ENV_FILE=/opt/ulnovatech/env/docker.discovery.env
 docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
 ```
 
-Migrations run automatically via `discovery-migrate` on startup. Re-run if needed:
+Migrations:
 
 ```bash
 docker compose -f infra/docker-compose.full.yml run --rm discovery-migrate
@@ -123,24 +187,18 @@ Import MySQL schema if this is a fresh database (add `02-schema.sql` under `infr
 
 ## 6. Smoke tests
 
-On the VM (HTTP, before Cloudflare strict TLS):
+On the VM (HTTP):
 
 ```bash
 cd /opt/ulnovatech/repo
-bash infra/scripts/smoke-full.sh http://localhost
+bash infra/scripts/smoke-full.sh http://127.0.0.1
 ```
 
-After DNS + HTTPS:
+After DNS + Cloudflare HTTPS:
 
 ```bash
 DISCOVERY_URL=https://discovery.ulnovatech.store \
   bash infra/scripts/smoke-full.sh https://ulnovatech.store
-```
-
-From repo root via npm:
-
-```bash
-npm run docker:smoke:full
 ```
 
 ## 7. GitHub Actions deploy (ongoing)
@@ -149,21 +207,22 @@ npm run docker:smoke:full
 
 | Secret | Description |
 |--------|-------------|
-| `OCI_SSH_HOST` | VM public IP or hostname |
-| `OCI_SSH_USER` | `deploy` |
-| `OCI_SSH_PRIVATE_KEY` | PEM private key matching `authorized_keys` |
+| `GCE_SSH_HOST` | VM public IP (`34.66.94.12`) |
+| `GCE_SSH_USER` | `deploy` |
+| `GCE_SSH_PRIVATE_KEY` | PEM/ed25519 private key matching `deploy` `authorized_keys` |
+
+These are configured on the GitHub repo. Workflow: [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) (retargeted from OCI).
+
 
 ### Workflow
 
-Push to `main` triggers [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml):
+Push to `main` / `workflow_dispatch` triggers [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml):
 
 1. Build `public_html` (`npm run build:linux`)
-2. Verify Discovery image builds (`pnpm build` in `discovery/`)
+2. Verify Discovery builds (`pnpm build` in `discovery/`)
 3. Rsync `public_html/`, `infra/`, `discovery/` to `/opt/ulnovatech/`
 4. SSH: `docker compose … up -d --build`
 5. Run Discovery + CRM migrations
-
-Monitor: **Actions** tab in GitHub.
 
 ## 8. Backups
 
@@ -176,7 +235,7 @@ docker compose -f infra/docker-compose.full.yml exec -T mysql \
   > ~/backup-ulnovatech-$(date +%F).sql
 ```
 
-Schedule with `cron` on the VM; copy dumps off-box (OCI Object Storage, S3, etc.).
+Schedule with `cron`; copy dumps off-box (GCS bucket optional).
 
 ### Postgres (Discovery)
 
@@ -188,7 +247,7 @@ docker compose -f infra/docker-compose.full.yml exec -T postgres \
 
 ### Volumes
 
-Docker named volumes: `mysql_data`, `postgres_data`, `discovery_storage`. Snapshot the VM or export volume data for disaster recovery.
+Docker named volumes: `mysql_data`, `postgres_data`, `discovery_storage`. Snapshot the GCE disk for disaster recovery.
 
 ### Secrets
 
@@ -204,7 +263,7 @@ Keep `/opt/ulnovatech/secrets/` and `/opt/ulnovatech/env/*.env` in a password ma
 | Stop stack | `docker compose -f infra/docker-compose.full.yml down` |
 | Shell in PHP | `… exec php-fpm bash` |
 
-Env file paths must be exported on every manual compose invocation (or add a small `deploy.sh` wrapper on the server).
+Env file paths must be exported on every manual compose invocation.
 
 ## 10. Troubleshooting
 
@@ -214,7 +273,8 @@ Env file paths must be exported on every manual compose invocation (or add a sma
 | Discovery 502 | `discovery-web` health, `DATABASE_URL`, migrate logs |
 | Mobile login fails | `DASH_ADMIN_PASS_HASH`, not plain `DASH_ADMIN_PASS` |
 | FCM push silent | `service-account.json` in `ulndash/backend/`, `FCM_PROJECT_ID` |
-| Cloudflare 525 | Origin TLS — use Origin Certificate or temporarily Full (not strict) |
+| Cloudflare 521/522 | GCE firewall + UFW allow 80; instance running |
+| Cloudflare SSL errors | Use **Flexible** while origin is HTTP-only (`listen 80`) |
 
 ## Related docs
 

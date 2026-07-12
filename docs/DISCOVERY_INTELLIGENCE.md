@@ -132,7 +132,7 @@ Implementation: `ulndash/backend/controllers/ImportController.php` → `mapProsp
 
 ## Production deployment
 
-**Target:** Oracle Cloud VM (Docker Compose) — same host as ulnovatech. See [DEPLOY_ORACLE.md](./DEPLOY_ORACLE.md) when the infra chunks are complete.
+**Target:** Google Compute Engine VM (Docker Compose) — same host as ulnovatech. See [DEPLOY_GCLOUD.md](./DEPLOY_GCLOUD.md).
 
 Until then, legacy Vercel/Neon instructions remain in [`discovery/docs/DEPLOYMENT.md`](../discovery/docs/DEPLOYMENT.md).
 
