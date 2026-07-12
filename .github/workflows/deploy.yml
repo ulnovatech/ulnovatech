@@ -50,7 +50,7 @@ jobs:
         working-directory: discovery
         env:
           DATABASE_URL: postgresql://build:build@127.0.0.1:5432/build
-          NEXT_PUBLIC_APP_URL: https://discovery.ulnovatech.store
+          NEXT_PUBLIC_APP_URL: http://discovery.34.66.94.12.nip.io
         run: |
           pnpm install --frozen-lockfile
           pnpm build
@@ -141,6 +141,12 @@ jobs:
             install -m 600 /opt/ulnovatech/repo/.env /opt/ulnovatech/repo/infra/.env
           fi
 
+          # Bake NEXT_PUBLIC_* into discovery-web image (compose build args, not only runtime env_file)
+          set -a
+          # shellcheck disable=SC1090
+          source "$DISCOVERY_ENV_FILE"
+          set +a
+
           docker compose -f infra/docker-compose.full.yml -f infra/docker-compose.prod.yml up -d --build
 
           # nginx caches php-fpm upstream IPs at start; recreate refreshes after php-fpm rebuild
@@ -162,6 +168,6 @@ jobs:
           DEPLOY_USER="${GCE_SSH_USER:-deploy}"
           DEPLOY_HOST="${DEPLOY_USER}@${GCE_SSH_HOST}"
           SSH_OPTS="-i ~/.ssh/gce_deploy_key -o StrictHostKeyChecking=accept-new"
-          # Hub smoke with Host header (server_name). Full Discovery smoke needs Clerk keys.
+          # Hub smoke with temporary nip.io Host (see docs/ACCESS.md).
           ssh $SSH_OPTS "$DEPLOY_HOST" \
-            'curl -sf -H "Host: ulnovatech.store" http://127.0.0.1/health && bash /opt/ulnovatech/repo/infra/scripts/smoke-ulnovatech.sh http://127.0.0.1'
+            'curl -sf -H "Host: hub.34.66.94.12.nip.io" http://127.0.0.1/health && SMOKE_HOST=hub.34.66.94.12.nip.io bash /opt/ulnovatech/repo/infra/scripts/smoke-ulnovatech.sh http://127.0.0.1'

@@ -43,9 +43,9 @@ See also [`ulnovatech.env.example`](./ulnovatech.env.example) — naming alias f
 
 ## Production checklist (ulnovatech)
 
-1. `BASE_URL=https://ulnovatech.store`
+1. `BASE_URL=http://hub.34.66.94.12.nip.io` (or future custom domain)
 2. `APP_DEBUG=false`
-3. `ALLOWED_ORIGINS` — production domains only
+3. `ALLOWED_ORIGINS` — hub + discovery temporary hosts (see [`docs/ACCESS.md`](../../docs/ACCESS.md))
 4. `DASH_ADMIN_PASS_HASH` — bcrypt hash; **unset** `DASH_ADMIN_PASS`
 5. `MOBILE_JWT_SECRET` — `openssl rand -hex 32`
 6. `DB_PASS` / `MYSQL_PASSWORD` — strong password, must match in compose env
@@ -54,7 +54,7 @@ See also [`ulnovatech.env.example`](./ulnovatech.env.example) — naming alias f
 
 ## Production checklist (discovery)
 
-1. `NEXT_PUBLIC_APP_URL=https://discovery.ulnovatech.store`
+1. `NEXT_PUBLIC_APP_URL=http://discovery.34.66.94.12.nip.io` (rebuild discovery-web after change)
 2. `ALLOW_DEV_AUTH=false`
 3. `CLERK_SECRET_KEY` and `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`
 4. `POSTGRES_PASSWORD` / `DATABASE_URL` — strong credentials

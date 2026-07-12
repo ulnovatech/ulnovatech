@@ -43,7 +43,7 @@ docker compose -f infra/docker-compose.full.yml up -d --build
 |----------|-----|
 | Main site | http://localhost:8080 |
 | Discovery UI (direct) | http://localhost:3000 |
-| Discovery via nginx | http://discovery.ulnovatech.store:8080 (add `127.0.0.1 discovery.ulnovatech.store` to hosts) |
+| Discovery via nginx | http://discovery.34.66.94.12.nip.io (prod) or hosts-file override for local |
 
 Run migrations manually if needed:
 

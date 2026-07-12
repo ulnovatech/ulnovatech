@@ -1,6 +1,6 @@
 # Deploy UlnoVaTech to Google Compute Engine (Docker)
 
-Operator runbook for production on a **single GCE VM** (Ubuntu 22.04/24.04 AMD64) with **Cloudflare Free** DNS/TLS edge and **GitHub Actions** deploy.
+Operator runbook for production on a **single GCE VM** (Ubuntu 22.04/24.04 AMD64) with **GitHub Actions** deploy. Public access is **IP + nip.io** until a custom domain is purchased ([`ACCESS.md`](./ACCESS.md)).
 
 Primary production target. Legacy Oracle runbook: [`DEPLOY_ORACLE.md`](./DEPLOY_ORACLE.md).
 
@@ -10,7 +10,7 @@ Primary production target. Legacy Oracle runbook: [`DEPLOY_ORACLE.md`](./DEPLOY_
 |-----------|---------|
 | Marketing, blog, dash, portfolio, PHP APIs | nginx + php-fpm + MySQL |
 | Discovery Intelligence | postgres + discovery-web + discovery-worker |
-| TLS edge | Cloudflare (proxied A records, **Flexible** while origin is HTTP `:80`) |
+| Public URLs (interim) | `http://34.66.94.12` + `*.34.66.94.12.nip.io` ([`ACCESS.md`](./ACCESS.md)) |
 | CI/CD | GitHub Actions → SSH/rsync → `docker compose` |
 
 Server layout: [`infra/env/README.md`](../infra/env/README.md).
@@ -39,9 +39,9 @@ Google Places / CSE / Clerk costs are **outside** GCE compute credit.
 | Network tag | `ulnovatech-web` |
 | Firewall | `ulnovatech-allow-web` (tcp 22/80/443) |
 | Disk | 60 GB pd-balanced |
-| Hub status | HTTP 200 for `/health`, `/`, `/dash/` with `Host: ulnovatech.store`; also via `http://34.66.94.12` |
-| Discovery status | API `/api/health` OK; UI uses `ALLOW_DEV_AUTH=true` until Clerk keys are set |
-| Public DNS | Still on InfinityFree/byet (`ns*.byet.org`) → update A records to `34.66.94.12` (see [`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)) |
+| Hub status | HTTP via `http://34.66.94.12/` and `http://hub.34.66.94.12.nip.io/` |
+| Discovery status | `http://discovery.34.66.94.12.nip.io/` — `ALLOW_DEV_AUTH=true` until Clerk keys are set |
+| Public DNS | **No InfinityFree / ulnovatech.store** — temporary nip.io hostnames ([`ACCESS.md`](./ACCESS.md)) |
 
 **Compose `.env` location:** put `MYSQL_*` / `POSTGRES_PASSWORD` in **`infra/.env`** (directory of the first `-f` file), not only repo-root `.env`.
 
@@ -87,7 +87,7 @@ gcloud compute instances create "$NAME" \
   --metadata=enable-oslogin=FALSE
 ```
 
-Note `$STATIC_IP` for Cloudflare ([`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)).
+Note `$STATIC_IP` for temporary nip.io URLs ([`ACCESS.md`](./ACCESS.md)).
 
 SSH as the default Ubuntu user (or OS Login user), then bootstrap.
 
@@ -126,22 +126,22 @@ cd /opt/ulnovatech/repo
 
 cp infra/env/docker.ulnovatech.env.example /opt/ulnovatech/env/docker.ulnovatech.env
 cp infra/env/docker.discovery.env.example /opt/ulnovatech/env/docker.discovery.env
-chmod 600 /opt/ulnovatech/env/*.env
+chmod 644 /opt/ulnovatech/env/*.env   # php-fpm www-data must read bind mounts
 ```
 
 Edit `/opt/ulnovatech/env/docker.ulnovatech.env`:
 
-- `BASE_URL=https://ulnovatech.store`
+- `BASE_URL=http://hub.34.66.94.12.nip.io`
 - `APP_DEBUG=false`
-- `ALLOWED_ORIGINS=https://ulnovatech.store,https://www.ulnovatech.store`
+- `ALLOWED_ORIGINS=http://hub.34.66.94.12.nip.io,http://34.66.94.12,http://discovery.34.66.94.12.nip.io`
 - `DASH_ADMIN_PASS_HASH` (bcrypt) — unset `DASH_ADMIN_PASS`
 - `MOBILE_JWT_SECRET` — `openssl rand -hex 32`
 - Strong `DB_PASS` (must match `MYSQL_PASSWORD` in compose or `.env`)
 
 Edit `/opt/ulnovatech/env/docker.discovery.env`:
 
-- `NEXT_PUBLIC_APP_URL=https://discovery.ulnovatech.store`
-- `ALLOW_DEV_AUTH=false`
+- `NEXT_PUBLIC_APP_URL=http://discovery.34.66.94.12.nip.io`
+- `ALLOW_DEV_AUTH=false` when Clerk keys are set
 - Clerk keys, strong Postgres password, `CRON_SECRET`
 
 Place GCP/Firebase credentials (optional):
@@ -192,15 +192,17 @@ On the VM (HTTP):
 
 ```bash
 cd /opt/ulnovatech/repo
-bash infra/scripts/smoke-full.sh http://127.0.0.1
+SMOKE_HOST=hub.34.66.94.12.nip.io bash infra/scripts/smoke-ulnovatech.sh http://127.0.0.1
 ```
 
-After DNS + Cloudflare HTTPS:
+From your laptop:
 
 ```bash
-DISCOVERY_URL=https://discovery.ulnovatech.store \
-  bash infra/scripts/smoke-full.sh https://ulnovatech.store
+curl -sI http://hub.34.66.94.12.nip.io/health
+curl -s http://discovery.34.66.94.12.nip.io/api/health
 ```
+
+See [`ACCESS.md`](./ACCESS.md).
 
 ## 7. GitHub Actions deploy (ongoing)
 
@@ -276,8 +278,8 @@ Env file paths must be exported on every manual compose invocation.
 | Mobile login fails | `DASH_ADMIN_PASS_HASH`, not plain `DASH_ADMIN_PASS` |
 | FCM push silent | `service-account.json` in `ulndash/backend/`, `FCM_PROJECT_ID` |
 | Cloudflare 521/522 | GCE firewall + UFW allow 80; instance running |
-| Cloudflare SSL errors | Use **Flexible** while origin is HTTP-only (`listen 80`) |
-| Public site still InfinityFree | Update byet A records to `34.66.94.12` ([`CLOUDFLARE_DNS.md`](./CLOUDFLARE_DNS.md)) |
+| Cloudflare SSL errors | Use **Flexible** while origin is HTTP-only (`listen 80`) — only after adding a real domain + Cloudflare |
+| Wrong vhost on bare IP | Hub must be `default_server`; Discovery only on `discovery.*.nip.io` |
 
 ## 11. Cutover checklist (handoff)
 
@@ -285,10 +287,10 @@ Env file paths must be exported on every manual compose invocation.
 |-------|-----------------|
 | GCE VM `ulnovatech-prod` running | `e2-standard-2` @ `34.66.94.12` |
 | Docker full stack up | nginx, php-fpm, mysql, postgres, discovery-web, discovery-worker |
-| Hub smoke on VM | `curl -H 'Host: ulnovatech.store' http://127.0.0.1/health` → 200 |
-| Discovery API | `http://127.0.0.1:3000/api/health` → 200 |
+| Hub smoke on VM | `curl -H 'Host: hub.34.66.94.12.nip.io' http://127.0.0.1/health` → 200 |
+| Discovery API | `http://discovery.34.66.94.12.nip.io/api/health` → 200 |
 | GitHub secrets | `GCE_SSH_*` set; workflow [Deploy to GCE](../.github/workflows/deploy.yml) |
-| Public DNS | **Manual:** InfinityFree/byet A records → `34.66.94.12` (NS still `ns*.byet.org`) |
+| Public access | Temporary IP + nip.io ([`ACCESS.md`](./ACCESS.md)) — **no InfinityFree** |
 | Clerk | Optional: set keys in `docker.discovery.env`, then `ALLOW_DEV_AUTH=false` + `NODE_ENV=production` |
 | Backups | Daily cron `15 3 * * *` → `/usr/local/bin/ulnovatech-backup.sh` → `/opt/ulnovatech/backups/` (14-day retention); copy off-box (GCS) recommended |
 | Budget | Trial ~$300 / 90 days; expect ~$50–110/mo after upgrade |

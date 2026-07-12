@@ -35,7 +35,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 $allowed = getenv('ALLOWED_ORIGINS')
-    ?: 'http://localhost:5174,http://localhost:5177,http://localhost:3000,http://localhost,https://ulnovatech.store';
+    ?: 'http://localhost:5174,http://localhost:5177,http://localhost:3000,http://localhost,http://hub.34.66.94.12.nip.io,http://34.66.94.12';
 $allowedOrigins = array_filter(array_map('trim', explode(',', $allowed)));
 
 if ($origin !== '' && in_array($origin, $allowedOrigins, true)) {
