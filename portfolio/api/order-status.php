@@ -83,13 +83,13 @@ try {
     $statusMap = [
         'pending' => [
             'label' => 'Awaiting payment',
-            'headline' => 'Complete your deposit to reserve your template',
-            'next_step' => 'Finish payment via the link we sent, or start a new checkout from the portfolio.',
+            'headline' => 'Complete your deposit to start your build',
+            'next_step' => 'Finish payment via Flutterwave, or start again from the portfolio.',
         ],
         'successful' => [
             'label' => 'Deposit confirmed',
-            'headline' => 'Your deposit is confirmed — we are on it!',
-            'next_step' => 'Our team will contact you within 24 hours to begin your project.',
+            'headline' => 'Deposit confirmed — we\'ll start building soon',
+            'next_step' => 'Our team will contact you within 24 hours for your business details.',
         ],
         'failed' => [
             'label' => 'Payment failed',
@@ -99,16 +99,16 @@ try {
         'cancelled' => [
             'label' => 'Payment cancelled',
             'headline' => 'Checkout was cancelled',
-            'next_step' => 'You can restart checkout anytime from our portfolio.',
+            'next_step' => 'You can choose a template again anytime from our portfolio.',
         ],
     ];
 
     $statusInfo = $statusMap[$status] ?? $statusMap['pending'];
 
     $timeline = [
-        ['id' => 'submitted', 'label' => 'Order submitted', 'done' => true],
+        ['id' => 'submitted', 'label' => 'Details submitted', 'done' => true],
         ['id' => 'deposit', 'label' => 'Deposit paid', 'done' => $status === 'successful'],
-        ['id' => 'reserved', 'label' => 'Template reserved', 'done' => $status === 'successful' && $templateReserved],
+        ['id' => 'reserved', 'label' => 'Build scheduled', 'done' => $status === 'successful' && $templateReserved],
         ['id' => 'build', 'label' => 'Project in progress', 'done' => false],
         ['id' => 'launch', 'label' => 'Ready to launch', 'done' => false],
     ];

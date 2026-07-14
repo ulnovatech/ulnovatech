@@ -42,7 +42,7 @@ try {
         echo json_encode([
             'success' => true,
             'status' => 'successful',
-            'message' => 'Your deposit was already confirmed. We will contact you shortly.',
+            'message' => 'Your deposit was already confirmed. We\'ll contact you shortly with next steps.',
             'reserved' => true,
             'tx_ref' => $txRef,
             'customer_name' => $payment['customer_name'],
@@ -73,7 +73,7 @@ try {
     echo json_encode([
         'success' => true,
         'status' => 'successful',
-        'message' => $result['customer_name'] . ', your deposit is confirmed! Your template is reserved.',
+        'message' => $result['customer_name'] . ', your deposit is confirmed! We\'ll contact you within 24 hours to collect business details and start building.',
         'reserved' => (bool) $result['reserved'],
         'already_completed' => (bool) $result['already_completed'],
         'tx_ref' => $txRef,

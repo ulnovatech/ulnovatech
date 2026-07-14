@@ -121,7 +121,7 @@ try {
             ],
             'customizations' => [
                 'title' => 'UlnovaTech Template Deposit',
-                'description' => 'Reserve ' . $templateKey . ' — ' . $package['title'],
+                'description' => 'Choose ' . $templateKey . ' — ' . $package['title'],
                 'logo' => $cfg['logo_url'],
             ],
             'meta' => [
