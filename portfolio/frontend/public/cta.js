@@ -1,6 +1,6 @@
 /**
- * Same preview CTA — copied into portfolio-app/ on Vite build via public/.
- * Live templates load ../cta.js from portfolio/portfolio/cta.js instead.
+ * UlnovaTech template preview CTA — inject into live Webflow template HTML.
+ * Served at /portfolio/portfolio/cta.js (relative ../cta.js from each template).
  */
 (function () {
   if (window.__ulnPreviewCtaLoaded) return;
@@ -11,13 +11,15 @@
   var ORDER_BASE = '/portfolio-app/order';
 
   function templateKey() {
-    var fromAttr = document.body && document.body.getAttribute('data-template');
-    if (fromAttr && fromAttr.trim()) return fromAttr.trim();
+    // Prefer folder ID from URL — never human labels from data-template
+    // (.../portfolio/portfolio/<folder>/...)
     var parts = window.location.pathname.split('/').filter(Boolean);
     var idx = parts.indexOf('portfolio');
     if (idx >= 0 && parts[idx + 1] === 'portfolio' && parts[idx + 2]) {
-      return parts[idx + 2];
+      return decodeURIComponent(parts[idx + 2]);
     }
+    var fromId = document.body && document.body.getAttribute('data-template-id');
+    if (fromId && fromId.trim()) return fromId.trim();
     return (document.title || 'template').trim();
   }
 
@@ -100,6 +102,7 @@
     mount();
   }
 
+  // Webflow often injects the badge after load
   var observer = new MutationObserver(removeWebflowBadge);
   observer.observe(document.documentElement, { childList: true, subtree: true });
   setTimeout(function () {

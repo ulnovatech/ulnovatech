@@ -9,11 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$templateName = basename($_GET['template'] ?? '');
-$portfolioDir = __DIR__ . '/../portfolio';
+require_once __DIR__ . '/lib/catalog.php';
+
+$rawSlug = (string) ($_GET['template'] ?? '');
+$templateName = uln_resolve_template_id($rawSlug);
+$portfolioDir = uln_portfolio_dir();
 $baseUrl = '/portfolio/portfolio';
 
-if ($templateName === '' || !is_dir($portfolioDir . '/' . $templateName)) {
+if ($templateName === null || !is_dir($portfolioDir . '/' . $templateName)) {
     http_response_code(404);
     echo json_encode(['success' => false, 'message' => 'Template not found']);
     exit;
@@ -26,8 +29,7 @@ $domainBase = (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1'
     : $scheme . '://' . $host;
 $templatesBaseUrl = $domainBase . $baseUrl;
 
-$title = ucwords(str_replace(['-', '_', '.webflow.io', '-template'], ' ', $templateName));
-$description = 'A professionally designed template.';
+$meta = uln_template_meta($templateName);
 $imagesDir = $portfolioDir . '/' . $templateName . '/images/';
 $screenshots = [];
 
@@ -36,7 +38,7 @@ if (is_dir($imagesDir)) {
     sort($files);
     foreach ($files as $file) {
         $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-        if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
+        if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'], true)) {
             $screenshots[] = $templatesBaseUrl . '/' . $templateName . '/images/' . $file;
         }
     }
@@ -56,10 +58,11 @@ if (!$mainImage && count($screenshots) > 0) {
 echo json_encode([
     'success' => true,
     'name' => $templateName,
-    'title' => $title,
-    'description' => $description,
+    'title' => $meta['title'],
+    'description' => $meta['description'],
+    'category' => $meta['category'],
     'mainImage' => $mainImage,
     'screenshots' => $screenshots,
     'thumbnails' => array_slice($screenshots, 0, 6),
-    'orderLink' => '/order?template=' . rawurlencode($templateName),
+    'orderLink' => '/portfolio-app/order?template=' . rawurlencode($templateName),
 ], JSON_UNESCAPED_SLASHES);

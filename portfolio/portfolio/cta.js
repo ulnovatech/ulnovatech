@@ -11,14 +11,15 @@
   var ORDER_BASE = '/portfolio-app/order';
 
   function templateKey() {
-    var fromAttr = document.body && document.body.getAttribute('data-template');
-    if (fromAttr && fromAttr.trim()) return fromAttr.trim();
+    // Prefer folder ID from URL — never human labels from data-template
+    // (.../portfolio/portfolio/<folder>/...)
     var parts = window.location.pathname.split('/').filter(Boolean);
-    // .../portfolio/portfolio/<folder>/index.html → folder
     var idx = parts.indexOf('portfolio');
     if (idx >= 0 && parts[idx + 1] === 'portfolio' && parts[idx + 2]) {
-      return parts[idx + 2];
+      return decodeURIComponent(parts[idx + 2]);
     }
+    var fromId = document.body && document.body.getAttribute('data-template-id');
+    if (fromId && fromId.trim()) return fromId.trim();
     return (document.title || 'template').trim();
   }
 

@@ -1,0 +1,42 @@
+{
+  "bildium.webflow.io": {
+    "title": "Bildium",
+    "description": "Construction and architecture showcase — polished for contractors and studios.",
+    "category": "business"
+  },
+  "crave": {
+    "title": "Crave",
+    "description": "Bold food and lifestyle template ready for restaurants and brands.",
+    "category": "food"
+  },
+  "mentara.webflow.io": {
+    "title": "Mentara",
+    "description": "Clean health and wellness site for clinics and care brands.",
+    "category": "health",
+    "aliases": ["Health"]
+  },
+  "nique-template.webflow.io": {
+    "title": "Nique",
+    "description": "Restaurant and café experience with menus, booking, and atmosphere.",
+    "category": "food",
+    "aliases": ["Restaurant & Café", "Restaurant & Cafe"]
+  },
+  "rosoi.webflow.io": {
+    "title": "Rosoi",
+    "description": "Ecommerce-ready restaurant and dining template.",
+    "category": "food",
+    "aliases": []
+  },
+  "willey-fragrance.webflow.io": {
+    "title": "Fragrance and Fashion",
+    "description": "Ecommerce fragrance and fashion storefront with product pages and checkout.",
+    "category": "ecommerce",
+    "aliases": ["Fragrance and Fashion"]
+  },
+  "zeki-template.webflow.io": {
+    "title": "Zeki",
+    "description": "Spa and beauty ecommerce template with products, blog, and shop.",
+    "category": "beauty",
+    "aliases": ["Spa & Beauty", "Spa and Beauty"]
+  }
+}

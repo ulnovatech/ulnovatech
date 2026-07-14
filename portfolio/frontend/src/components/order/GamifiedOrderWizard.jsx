@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FiArrowLeft, FiArrowRight, FiCheck, FiLock, FiZap } from 'react-icons/fi';
 import { apiEndpoints } from '../../site.config';
@@ -27,6 +27,16 @@ export default function GamifiedOrderWizard({ templateName = '', templateData = 
   });
   const [paying, setPaying] = useState(false);
   const [quoteSubmitting, setQuoteSubmitting] = useState(false);
+
+  // Canonical folder ID from API (catalog); human title for display fields
+  useEffect(() => {
+    if (!templateData?.name) return;
+    setForm((prev) => ({
+      ...prev,
+      template: templateData.name,
+      websiteName: templateData.title || templateData.name,
+    }));
+  }, [templateData]);
 
   const currentStep = wizardSteps[step];
   const selectedPlan = getPlanById(form.package);
