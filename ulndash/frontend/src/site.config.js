@@ -18,5 +18,5 @@ export const appLinks = {
     (isDev ? 'http://localhost/ulnovatech/portfolio/' : '/portfolio-app/'),
   discoveryIntelligence:
     import.meta.env.VITE_DISCOVERY_URL ||
-    (isDev ? 'http://localhost:3000' : 'https://discovery.ulnovatech.store'),
+    (isDev ? 'http://localhost:3000' : 'http://discovery.34.66.94.12.nip.io'),
 }
