@@ -44,12 +44,13 @@ const Order = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="mx-auto max-w-6xl space-y-12 px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-brand">Secure checkout</p>
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">Choose your template</p>
           <h1 className="mt-2 text-3xl font-bold text-gray-900 md:text-4xl">
-            Reserve your website in minutes
+            Tell us about your project — then start with a deposit
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-gray-600">
-            Pick a package, pay a small deposit with Flutterwave (MoMo, card, or bank), and we lock your template instantly.
+            Complete a short guided form first. When you&apos;re ready, pay a deposit with Flutterwave
+            (MoMo, card, or bank) and we begin building.
           </p>
         </div>
 
@@ -72,18 +73,36 @@ const Order = () => {
 
             <section className="rounded-xl bg-white p-6 shadow-lg">
               <h3 className="mb-4 text-xl font-bold text-gray-900">How it works</h3>
-              <ol className="space-y-4 text-sm text-gray-700">
+              <ol className="space-y-5 text-sm text-gray-700">
                 <li className="flex gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">1</span>
-                  <span>Choose your package and tell us about your business.</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Choose your design</p>
+                    <p className="mt-1 text-gray-600">
+                      Full ownership of the website is yours once your order is complete.
+                    </p>
+                  </div>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">2</span>
-                  <span>Pay your deposit securely via Flutterwave.</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">We build it</p>
+                    <p className="mt-1 text-gray-600">
+                      After payment, we&apos;ll contact you for your business details and get to work.
+                      Customizations are included at no extra cost.
+                    </p>
+                  </div>
                 </li>
                 <li className="flex gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand text-xs font-bold text-white">3</span>
-                  <span>We reserve your template and contact you within 24 hours.</span>
+                  <div>
+                    <p className="font-semibold text-gray-900">Go live</p>
+                    <p className="mt-1 text-gray-600">
+                      We&apos;ll set everything up and walk you through going live — including domain
+                      name (your business&apos;s website address) options if you need one. No hosting
+                      fees, ever.
+                    </p>
+                  </div>
                 </li>
               </ol>
               <p className="mt-4 text-xs text-gray-500">

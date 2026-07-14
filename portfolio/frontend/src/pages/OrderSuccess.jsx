@@ -68,7 +68,7 @@ const OrderSuccess = () => {
         <div className="max-w-md text-center">
           <div className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-brand border-t-transparent" />
           <h1 className="text-xl font-bold text-gray-900">Confirming your payment…</h1>
-          <p className="mt-2 text-sm text-gray-600">Hang tight — we are securing your template.</p>
+          <p className="mt-2 text-sm text-gray-600">Hang tight — we&apos;re confirming your deposit.</p>
         </div>
       </div>
     );
@@ -80,9 +80,10 @@ const OrderSuccess = () => {
         <div className="rounded-2xl border border-green-200 bg-gradient-to-b from-green-50 to-white p-8 text-center shadow-lg">
           <div className="text-5xl mb-4" aria-hidden="true">🎉</div>
           <FiCheckCircle className="mx-auto mb-4 h-12 w-12 text-green-600" />
-          <h1 className="text-2xl font-bold text-gray-900">Template reserved!</h1>
+          <h1 className="text-2xl font-bold text-gray-900">You&apos;re all set — we&apos;ll start building</h1>
           <p className="mt-3 text-gray-600">
-            {state.data.message || 'Your deposit is confirmed. Our team will reach out within 24 hours.'}
+            {state.data.message ||
+              'Your deposit is confirmed. We\'ll contact you within 24 hours for business details, then get to work. Customizations are included.'}
           </p>
 
           <dl className="mt-6 space-y-2 rounded-xl bg-white/80 p-4 text-left text-sm">

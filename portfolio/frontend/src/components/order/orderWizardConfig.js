@@ -25,7 +25,7 @@ export const wizardSteps = [
     id: 'contact',
     emoji: '👋',
     title: 'Who should we build for?',
-    subtitle: 'We will use this to confirm your reservation',
+    subtitle: 'So we can follow up after you start your order',
   },
   {
     id: 'project',
@@ -36,7 +36,7 @@ export const wizardSteps = [
   {
     id: 'pay',
     emoji: '🔒',
-    title: 'Secure your template',
-    subtitle: 'Pay a small deposit via Flutterwave — card or mobile money',
+    title: 'Start your build',
+    subtitle: 'Pay a small deposit via Flutterwave — then we get to work',
   },
 ];

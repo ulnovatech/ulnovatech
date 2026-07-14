@@ -358,8 +358,8 @@ export default function GamifiedOrderWizard({ templateName = '', templateData = 
             <div className="flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-900">
               <FiZap className="mt-0.5 h-5 w-5 shrink-0 text-green-600" />
               <p>
-                Pay your deposit with <strong>MTN MoMo</strong>, <strong>Airtel Money</strong>, card, or bank transfer via Flutterwave.
-                Your template is reserved immediately after payment.
+                Pay your deposit with <strong>MTN MoMo</strong>, <strong>Airtel Money</strong>, card, or bank
+                transfer via Flutterwave. After payment we contact you for business details and start building.
               </p>
             </div>
 
@@ -370,7 +370,7 @@ export default function GamifiedOrderWizard({ templateName = '', templateData = 
               className="flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 py-4 text-base font-semibold text-white transition hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60"
             >
               <FiLock className="h-5 w-5" />
-              {paying ? 'Starting checkout…' : `Pay ${formatUgx(selectedPlan.depositUgx)} & reserve`}
+              {paying ? 'Opening Flutterwave…' : `Pay ${formatUgx(selectedPlan.depositUgx)} & start build`}
             </button>
 
             <button

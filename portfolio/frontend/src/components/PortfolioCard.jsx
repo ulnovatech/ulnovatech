@@ -49,7 +49,7 @@ export default function PortfolioCard({ templateName, title, description, mainIm
           to={`/order?template=${encodeURIComponent(templateName)}`}
           className="inline-flex w-full items-center justify-center rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
         >
-          Reserve This Template
+          Choose this template
         </Link>
       </div>
     </article>

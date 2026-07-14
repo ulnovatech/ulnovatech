@@ -26,9 +26,9 @@ export default function CTA() {
         id="order-btn"
         to={`/order?template=${encodeURIComponent(templateName)}`}
         className="bg-brand text-white font-bold px-4 py-2 rounded-full text-base mx-2 max-sm:text-sm"
-        title="Order This Website"
+        title="Choose this template"
       >
-        Reserve Template
+        Choose this template
       </Link>
 
       <a
